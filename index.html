@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.0.1 Compact</title>
+<title>高校野球AI Desk Ver5.0.3 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -50,32 +50,32 @@ main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
 .dot.before{background:#60a5fa}.dot.active{background:#fb923c}.dot.finished{background:#22c55e}
 .grid{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;align-items:stretch}
-.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);min-height:218px}
+.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:12px 14px;box-shadow:var(--shadow);min-height:220px;height:220px;overflow:hidden}
 .hero-card{border-left:10px solid var(--blue)}
 .hero-card.is-warning{border-left-color:#f59e0b}.hero-card.is-danger{border-left-color:#e11d48}.hero-card.is-ok{border-left-color:#22c55e}
 .hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950}
-.hero-school{font-size:clamp(36px,3.2vw,58px);font-weight:950;letter-spacing:-.07em;margin-top:10px}
-.hero-score{display:flex;align-items:baseline;gap:10px;margin-top:4px}
-.hero-score span{font-size:clamp(38px,4vw,62px);font-weight:950}
-.hero-score small{font-size:22px;color:var(--muted)}
-.hero-score em{font-style:normal;font-size:clamp(20px,1.9vw,34px);font-weight:950}
-.hero-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:5px}
-.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:7px 9px;margin-top:7px;color:#334155}
-.hero-reason strong{display:block;color:#111827;font-size:14px}.hero-reason span{font-size:12px;line-height:1.6}
-.btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:950}
+.hero-school{font-size:clamp(32px,2.8vw,48px);font-weight:950;letter-spacing:-.07em;margin-top:6px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-score{display:flex;align-items:baseline;gap:8px;margin-top:3px;line-height:1}
+.hero-score span{font-size:clamp(34px,3.3vw,52px);font-weight:950;line-height:1}
+.hero-score small{font-size:18px;color:var(--muted)}
+.hero-score em{font-style:normal;font-size:clamp(18px,1.6vw,28px);font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:4px;line-height:1.15}
+.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:5px;color:#334155;line-height:1.3}
+.hero-reason strong{display:block;color:#111827;font-size:13px;line-height:1.25}.hero-reason span{font-size:12px;line-height:1.35}
+.btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:950}
 .btn.disabled{background:#94a3b8}
-.hero-actions{margin-top:7px}
-.panel h2{margin:0 0 8px;font-size:20px}
+.hero-actions{margin-top:5px}
+.panel h2{margin:0 0 7px;font-size:20px}
 .alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
 .alert-stat{border-radius:12px;padding:6px 9px;border:1px solid var(--line);background:#f8fafc}
 .alert-stat strong{display:block;font-size:16px;font-weight:950}.alert-stat span{font-size:11px;color:var(--muted);font-weight:900}
 .alert-stat.danger{background:#fff1f2;color:#be123c}.alert-stat.warn{background:#fffbeb;color:#92400e}.alert-stat.info{background:#eff6ff;color:#1d4ed8}
-.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:132px;overflow:auto}
-.alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:9px 12px}
+.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:7px;max-height:140px;overflow:auto}
+.alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:8px 11px}
 .alert-card.is-warning{border-left-color:#f59e0b;background:#fffbeb}.alert-card.is-danger{border-left-color:#e11d48;background:#fff1f2}
 .alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:14px;font-weight:900;margin:3px 0 5px}.alert-note{font-size:12px;color:var(--muted)}
 .details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:8px}
-details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:390px;overflow:hidden}
+details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:405px;overflow:hidden}
 summary{font-size:18px;font-weight:950;cursor:pointer}
 .notice{font-size:13px;color:var(--muted)}
 .table-wrap{max-height:260px;overflow:auto;margin-top:10px}
@@ -110,14 +110,14 @@ td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}
 <body>
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.0.1 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 上段コンパクト化 ／ Priority Engine v1 ／ 北順速報センター</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.0.3 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ Hero収まり改善 ／ Priority Engine v1 ／ 北順速報センター</div>
   </div>
   <div class="live">
     <div class="pill"><span class="live-dot"></span>自動巡回中</div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 04:47:24 JST</div>
-    <div class="pill">次回目安：05:17 JST</div>
+    <div class="pill">最終：2026-06-30 07:21:51 JST</div>
+    <div class="pill">次回目安：07:51 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
@@ -155,21 +155,13 @@ td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}
 
   <section class="grid">
     
-<section class="hero-card is-warning">
-  <div class="hero-kicker">🟦 試合開始前 ／ 注意</div>
-  <div class="hero-school">八重山商工</div>
-  <div class="hero-score"><span>3</span><small>－</small><span>4</span><em>那覇商</em></div>
-  <div class="hero-meta">
-    <span class="badge is-warning">ビハインド</span>
-    <span>★☆☆☆☆</span>
-    <span>沖縄大会</span>
-    <span></span>
-  </div>
+<section class="hero-card is-neutral">
+  <div class="hero-kicker">🟦 試合開始前</div>
+  <div class="hero-school">現在の最優先なし</div>
   <div class="hero-reason">
-    <strong>重要校ビハインド</strong>
-    <span>Priority：80 ／ 注意。速報ページで事実確認してください。</span>
+    <strong>メイン表示なし</strong>
+    <span>速報必要・負けそう・今回更新があった重要校だけをメイン表示します。八重山商工のような古いスコア残りは除外しています。</span>
   </div>
-  <div class="hero-actions"><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報ページ</a></div>
 </section>
 
 
@@ -193,7 +185,7 @@ td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}
   <section class="details">
     <details open>
       <summary>速報センター・重要校一覧</summary>
-      <p class="notice">北から順に一覧表示します。Hero Cardとは別に、地域順で確認できます。</p>
+      <p class="notice">北から順に一覧表示します。Hero Cardは即時対応・今回更新分だけ、一覧は地域順で確認できます。</p>
       <div class="table-wrap">
         <table>
           <tr><th>地区</th><th>回戦</th><th>重要校</th><th>注目度</th><th>優先</th><th>スコア</th><th>判定</th><th>回</th><th>確認</th></tr>
