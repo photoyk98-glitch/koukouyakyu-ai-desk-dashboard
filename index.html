@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver4.0.7</title>
+<title>高校野球AI Desk Ver4.1.0</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -684,6 +684,39 @@ main {
   align-items: flex-start;
 }
 
+.micro-priority {
+  margin-top: 4px;
+}
+
+.priority-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.p-danger {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.p-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.p-watch {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.p-neutral {
+  background: #e5e7eb;
+  color: #374151;
+}
+
 .micro-score {
   font-size: 17px;
   font-weight: 950;
@@ -1015,14 +1048,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.7 Stable</span></h1>
-      <div class="subtitle">運用版候補 ／ 進行判定修正 ／ 日本時間表示 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.1.0 Priority</span></h1>
+      <div class="subtitle">運用版候補 ／ Priority Engine v1 ／ 日本時間表示 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
       <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
-      <div class="live-pill">最終：2026-06-29 22:16:37 JST</div>
-      <div class="live-pill">次回目安：22:46 JST</div>
+      <div class="live-pill">最終：2026-06-29 23:04:47 JST</div>
+      <div class="live-pill">次回目安：23:34 JST</div>
       <div class="live-pill">画面自動更新：5分</div>
     </div>
   </div>
@@ -1085,6 +1118,7 @@ function copyText(id) {
   <div class="hero-reason">
     <strong>重要校ビハインド</strong>
     <span>まだ5回終了前の可能性があります。5回到達時の状況を確認してください。</span>
+    <span>Priority：80 ／ 注意 ／ 重要校ビハインド</span>
   </div>
   <div class="decision-link"><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報ページ</a></div>
 </div>
@@ -1128,15 +1162,29 @@ function copyText(id) {
         <p class="notice">ここは一覧表に一本化しました。カード重複を避け、スコア確認を優先します。</p>
         <div class="table-wrap">
           <table>
-            <tr><th>地区</th><th>回戦</th><th>重要校</th><th>注目度</th><th>スコア</th><th>判定</th><th>回</th><th>CSV情報</th><th>確認</th></tr>
+            <tr><th>地区</th><th>回戦</th><th>重要校</th><th>注目度</th><th>優先</th><th>スコア</th><th>判定</th><th>回</th><th>CSV情報</th><th>確認</th></tr>
             
 <tr>
 <td>沖縄</td>
 <td></td>
 <td><strong>八重山商工</strong></td>
 <td><span class="stars">★☆☆☆☆</span></td>
+<td><span class="priority-badge p-warning">注意｜重要校ビハインド</span></td>
 <td>3－4 那覇商</td>
 <td><span class="badge warning">ビハインド</span></td>
+<td></td>
+<td>CSV記載なし</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td><strong>興南</strong></td>
+<td><span class="stars">★☆☆☆☆</span></td>
+<td><span class="priority-badge p-warning">監視｜接戦・継続確認</span></td>
+<td>5－3 宜野湾</td>
+<td><span class="badge good">リード</span></td>
 <td></td>
 <td>CSV記載なし</td>
 <td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
@@ -1147,6 +1195,7 @@ function copyText(id) {
 <td></td>
 <td><strong>旭丘</strong></td>
 <td><span class="stars">★☆☆☆☆</span></td>
+<td><span class="priority-badge p-watch">監視｜重要校リード</span></td>
 <td>9－2 江南</td>
 <td><span class="badge good">リード</span></td>
 <td></td>
@@ -1159,23 +1208,12 @@ function copyText(id) {
 <td></td>
 <td><strong>至学館</strong></td>
 <td><span class="stars">★☆☆☆☆</span></td>
+<td><span class="priority-badge p-watch">監視｜重要校リード</span></td>
 <td>27－0 猿投農林</td>
 <td><span class="badge good">リード</span></td>
 <td></td>
 <td>CSV記載なし</td>
 <td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
-</tr>
-
-<tr>
-<td>沖縄</td>
-<td></td>
-<td><strong>興南</strong></td>
-<td><span class="stars">★☆☆☆☆</span></td>
-<td>5－3 宜野湾</td>
-<td><span class="badge good">リード</span></td>
-<td></td>
-<td>CSV記載なし</td>
-<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
 </tr>
 
           </table>
