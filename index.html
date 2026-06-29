@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高校野球AI Desk Ver4.0.1</title>
+<title>高校野球AI Desk Ver4.0.2</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -121,6 +121,90 @@ main {
   max-width: 1540px;
   margin: auto;
   padding: 14px 18px 18px;
+}
+
+.progress-panel {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 12px 14px;
+  margin: 0 0 12px 0;
+}
+
+.progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.progress-head strong {
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.progress-head span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+}
+
+.progress-seg {
+  height: 100%;
+}
+
+.seg-before {
+  background: #60a5fa;
+}
+
+.seg-active {
+  background: #fb923c;
+}
+
+.seg-finished {
+  background: #22c55e;
+}
+
+.progress-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 850;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.dot.before {
+  background: #60a5fa;
+}
+
+.dot.active {
+  background: #fb923c;
+}
+
+.dot.finished {
+  background: #22c55e;
 }
 
 .desk-grid {
@@ -859,14 +943,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.1 Stable</span></h1>
-      <div class="subtitle">運用版候補 ／ 当日ヒーロー優先 ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.2 Stable</span></h1>
+      <div class="subtitle">運用版候補 ／ 大会進行バー ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
       <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
-      <div class="live-pill">最終：2026-06-29 09:25:14</div>
-      <div class="live-pill">次回目安：09:55</div>
+      <div class="live-pill">最終：2026-06-29 09:39:40</div>
+      <div class="live-pill">次回目安：10:09</div>
     </div>
   </div>
 </header>
@@ -889,6 +973,23 @@ function copyText(id) {
       <div class="stat-tile"><strong>負けそう</strong><span>0</span></div>
       <div class="stat-tile"><strong>当日表示</strong><span>123</span></div>
       <div class="stat-tile"><strong>重要校</strong><span>4</span></div>
+    </div>
+  </section>
+
+  <section class="progress-panel">
+    <div class="progress-head">
+      <strong>本日の進行状況</strong>
+      <span>当日表示 123試合</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-seg seg-before" style="width:0%"></div>
+      <div class="progress-seg seg-active" style="width:100%"></div>
+      <div class="progress-seg seg-finished" style="width:0%"></div>
+    </div>
+    <div class="progress-legend">
+      <span><b class="dot before"></b>試合開始前 0</span>
+      <span><b class="dot active"></b>試合中・確認対象 123</span>
+      <span><b class="dot finished"></b>本日終了 0</span>
     </div>
   </section>
 
