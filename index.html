@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.0 Stable</title>
+<title>高校野球AI Desk Ver5.0.1 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -50,32 +50,32 @@ main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
 .dot.before{background:#60a5fa}.dot.active{background:#fb923c}.dot.finished{background:#22c55e}
 .grid{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;align-items:stretch}
-.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:22px;padding:18px;box-shadow:var(--shadow);min-height:286px}
+.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);min-height:218px}
 .hero-card{border-left:10px solid var(--blue)}
 .hero-card.is-warning{border-left-color:#f59e0b}.hero-card.is-danger{border-left-color:#e11d48}.hero-card.is-ok{border-left-color:#22c55e}
-.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:6px 12px;background:#fff7ed;color:#9a3412;font-size:13px;font-weight:950}
-.hero-school{font-size:clamp(46px,4vw,74px);font-weight:950;letter-spacing:-.07em;margin-top:14px}
-.hero-score{display:flex;align-items:baseline;gap:12px;margin-top:8px}
-.hero-score span{font-size:clamp(48px,5vw,78px);font-weight:950}
-.hero-score small{font-size:28px;color:var(--muted)}
-.hero-score em{font-style:normal;font-size:clamp(24px,2.2vw,42px);font-weight:950}
-.hero-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px;font-weight:850;margin-top:8px}
-.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:14px;padding:9px 11px;margin-top:9px;color:#334155}
+.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950}
+.hero-school{font-size:clamp(36px,3.2vw,58px);font-weight:950;letter-spacing:-.07em;margin-top:10px}
+.hero-score{display:flex;align-items:baseline;gap:10px;margin-top:4px}
+.hero-score span{font-size:clamp(38px,4vw,62px);font-weight:950}
+.hero-score small{font-size:22px;color:var(--muted)}
+.hero-score em{font-style:normal;font-size:clamp(20px,1.9vw,34px);font-weight:950}
+.hero-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:5px}
+.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:7px 9px;margin-top:7px;color:#334155}
 .hero-reason strong{display:block;color:#111827;font-size:14px}.hero-reason span{font-size:12px;line-height:1.6}
 .btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:950}
 .btn.disabled{background:#94a3b8}
-.hero-actions{margin-top:10px}
-.panel h2{margin:0 0 12px;font-size:22px}
-.alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.alert-stat{border-radius:14px;padding:8px 10px;border:1px solid var(--line);background:#f8fafc}
-.alert-stat strong{display:block;font-size:18px;font-weight:950}.alert-stat span{font-size:11px;color:var(--muted);font-weight:900}
+.hero-actions{margin-top:7px}
+.panel h2{margin:0 0 8px;font-size:20px}
+.alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.alert-stat{border-radius:12px;padding:6px 9px;border:1px solid var(--line);background:#f8fafc}
+.alert-stat strong{display:block;font-size:16px;font-weight:950}.alert-stat span{font-size:11px;color:var(--muted);font-weight:900}
 .alert-stat.danger{background:#fff1f2;color:#be123c}.alert-stat.warn{background:#fffbeb;color:#92400e}.alert-stat.info{background:#eff6ff;color:#1d4ed8}
-.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:188px;overflow:auto}
-.alert-card{background:#f8fafc;border-left:8px solid #94a3b8;border-radius:16px;padding:12px 14px}
+.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-height:132px;overflow:auto}
+.alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:9px 12px}
 .alert-card.is-warning{border-left-color:#f59e0b;background:#fffbeb}.alert-card.is-danger{border-left-color:#e11d48;background:#fff1f2}
-.alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:15px;font-weight:900;margin:4px 0 8px}.alert-note{font-size:13px;color:var(--muted)}
-.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:10px}
-details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:330px;overflow:hidden}
+.alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:14px;font-weight:900;margin:3px 0 5px}.alert-note{font-size:12px;color:var(--muted)}
+.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:8px}
+details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:390px;overflow:hidden}
 summary{font-size:18px;font-weight:950;cursor:pointer}
 .notice{font-size:13px;color:var(--muted)}
 .table-wrap{max-height:260px;overflow:auto;margin-top:10px}
@@ -88,19 +88,36 @@ td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}
 .p-danger{background:#ffe4e6;color:#be123c}.p-warning{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}
 .footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
 @media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:420px}.hero-card,.panel{min-height:auto}}
+@media(min-width:1181px){
+  .grid > .hero-card,
+  .grid > .panel{
+    height:230px;
+    min-height:230px;
+  }
+  .hero-card.is-neutral .hero-school{
+    font-size:clamp(34px,3vw,52px);
+    margin-top:26px;
+  }
+  .hero-card.is-neutral .hero-reason{
+    max-width:760px;
+  }
+  .table-wrap{
+    max-height:320px;
+  }
+}
 </style>
 </head>
 <body>
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.0 Stable</span></h1>
-    <div class="subtitle">運用版候補 ／ クリーン再構成 ／ Priority Engine v1 ／ 北順速報センター</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.0.1 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 上段コンパクト化 ／ Priority Engine v1 ／ 北順速報センター</div>
   </div>
   <div class="live">
     <div class="pill"><span class="live-dot"></span>自動巡回中</div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 04:22:26 JST</div>
-    <div class="pill">次回目安：04:52 JST</div>
+    <div class="pill">最終：2026-06-30 04:47:24 JST</div>
+    <div class="pill">次回目安：05:17 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
