@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高校野球AI Desk Ver4.0.3</title>
+<title>高校野球AI Desk Ver4.0.4</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -501,6 +501,54 @@ main {
   border: 2px solid rgba(245,158,11,.30);
 }
 
+.alert-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 6px 0 10px;
+}
+
+.alert-summary-item {
+  border-radius: 14px;
+  padding: 8px 9px;
+  background: #f8fafc;
+  border: 1px solid rgba(15,23,42,.08);
+}
+
+.alert-summary-item strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.alert-summary-item span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 900;
+  margin-top: 3px;
+}
+
+.danger-mini {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.warning-mini {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.neutral-mini {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.alert-scroll {
+  max-height: 210px;
+}
+
 .alert-list {
   list-style: none;
   padding: 0;
@@ -966,14 +1014,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.3 Stable</span></h1>
-      <div class="subtitle">運用版候補 ／ 最優先理由表示 ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.4 Stable</span></h1>
+      <div class="subtitle">運用版候補 ／ Alert Center強化 ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
       <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
-      <div class="live-pill">最終：2026-06-29 09:58:48</div>
-      <div class="live-pill">次回目安：10:28</div>
+      <div class="live-pill">最終：2026-06-29 10:07:37</div>
+      <div class="live-pill">次回目安：10:37</div>
     </div>
   </div>
 </header>
@@ -1045,7 +1093,21 @@ function copyText(id) {
         <h2>Alert Center</h2>
         <span>要対応</span>
       </div>
-      <div class="panel-scroll">
+      <div class="alert-summary">
+        <div class="alert-summary-item danger-mini">
+          <strong>0</strong>
+          <span>速報必要</span>
+        </div>
+        <div class="alert-summary-item warning-mini">
+          <strong>0</strong>
+          <span>負けそう</span>
+        </div>
+        <div class="alert-summary-item neutral-mini">
+          <strong>通常</strong>
+          <span>状態</span>
+        </div>
+      </div>
+      <div class="panel-scroll alert-scroll">
         <ul class="alert-list">
 <li class="alert-card calm-alert">
   <div class="alert-icon">通常</div>
