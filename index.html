@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高校野球AI Desk Ver3.1</title>
+<title>高校野球AI Desk Ver4.0.0</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -89,6 +89,24 @@ h1 {
   font-weight: 900;
 }
 
+.phase-pill.phase-before {
+  background: #dbeafe;
+  color: #1e3a8a;
+  border-color: #bfdbfe;
+}
+
+.phase-pill.phase-live {
+  background: #ffedd5;
+  color: #9a3412;
+  border-color: #fed7aa;
+}
+
+.phase-pill.phase-done {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
 .live-dot {
   display: inline-block;
   width: 8px;
@@ -158,6 +176,30 @@ main {
   font-size: 13px;
   font-weight: 950;
   color: var(--muted);
+}
+
+.phase-label {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 950;
+  margin: 3px 0 4px;
+}
+
+.phase-label.phase-before {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.phase-label.phase-live {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.phase-label.phase-done {
+  background: #dcfce7;
+  color: #166534;
 }
 
 .status-main {
@@ -817,13 +859,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver3.1 Grid</span></h1>
-      <div class="subtitle">Alert Center中心 ／ 編集TODO・タイムライン廃止 ／ 当日表示 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.0 Phase</span></h1>
+      <div class="subtitle">状態表示導入 ／ Alert Center中心 ／ 当日表示 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
-      <div class="live-pill">最終：2026-06-29 07:19:12</div>
-      <div class="live-pill">次回目安：07:49</div>
+      <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
+      <div class="live-pill">最終：2026-06-29 08:58:01</div>
+      <div class="live-pill">次回目安：09:28</div>
     </div>
   </div>
 </header>
@@ -833,10 +876,11 @@ function copyText(id) {
     <div class="status-bar">
       <div>
         <div class="status-label">デスク判断バー</div>
+        <div class="phase-label phase-before">🟦 試合開始前</div>
         <div class="status-main ">通常</div>
       </div>
       <div class="notice">
-        メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。即時対応はAlert Centerへ集約します。
+        本日の重要校・注目カードを確認する時間帯です。<br>メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。
       </div>
     </div>
 
@@ -851,7 +895,7 @@ function copyText(id) {
   <section class="desk-grid">
     <div class="grid-hero">
 <div class="decision-card is-warning">
-  <div class="decision-kicker">優先確認</div>
+  <div class="decision-kicker">🟦 試合開始前 ／ 優先確認</div>
   <div class="decision-school">八重山商工</div>
   <div class="decision-score">
     <span>3</span><small>－</small><span>4</span>
@@ -1039,7 +1083,7 @@ function copyText(id) {
 <tr>
 <td>南北海道</td>
 <td></td>
-<td>札幌平岡 8－4 札幌山の手</td>
+<td>札幌平岡 8－7 札幌山の手</td>
 <td>試合中</td>
 <td></td>
 <td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
