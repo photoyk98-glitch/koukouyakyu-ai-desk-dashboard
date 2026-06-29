@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高校野球AI Desk Ver4.0.2</title>
+<title>高校野球AI Desk Ver4.0.3</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -434,6 +434,29 @@ main {
   font-size: 13px;
   margin-top: 12px;
   font-weight: 850;
+}
+
+.hero-reason {
+  margin-top: 12px;
+  background: rgba(255,255,255,.70);
+  border: 1px solid rgba(15,23,42,.08);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.hero-reason strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 950;
+  color: #111827;
+}
+
+.hero-reason span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-top: 3px;
 }
 
 .panel {
@@ -943,14 +966,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.2 Stable</span></h1>
-      <div class="subtitle">運用版候補 ／ 大会進行バー ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.0.3 Stable</span></h1>
+      <div class="subtitle">運用版候補 ／ 最優先理由表示 ／ 前日試合除外 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
       <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
-      <div class="live-pill">最終：2026-06-29 09:39:40</div>
-      <div class="live-pill">次回目安：10:09</div>
+      <div class="live-pill">最終：2026-06-29 09:58:48</div>
+      <div class="live-pill">次回目安：10:28</div>
     </div>
   </div>
 </header>
@@ -1008,6 +1031,10 @@ function copyText(id) {
     <span>沖縄大会</span>
     <span></span>
     <span></span>
+  </div>
+  <div class="hero-reason">
+    <strong>重要校ビハインド</strong>
+    <span>まだ5回終了前の可能性があります。5回到達時の状況を確認してください。</span>
   </div>
   <div class="decision-link"><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報ページ</a></div>
 </div>
