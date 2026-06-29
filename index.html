@@ -1,0 +1,2120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高校野球AI Desk Ver3.1</title>
+<style>
+:root {
+  --bg: #eef2f8;
+  --ink: #07111f;
+  --muted: #64748b;
+  --panel: rgba(255,255,255,.84);
+  --panel-solid: #ffffff;
+  --line: rgba(15,23,42,.10);
+  --navy: #07111f;
+  --blue: #2563eb;
+  --cyan: #06b6d4;
+  --red: #e11d48;
+  --amber: #f59e0b;
+  --green: #16a34a;
+  --shadow: 0 18px 45px rgba(15,23,42,.10);
+  --shadow-soft: 0 8px 24px rgba(15,23,42,.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37,99,235,.20), transparent 30%),
+    radial-gradient(circle at 95% 5%, rgba(6,182,212,.16), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+  overflow-x: hidden;
+}
+
+header {
+  background: rgba(7,17,31,.94);
+  color: white;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.header-inner {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 13px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -.04em;
+}
+
+.subtitle {
+  margin-top: 4px;
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.live-strip {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.live-pill {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  color: #e5e7eb;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 0 5px rgba(34,197,94,.16);
+}
+
+main {
+  max-width: 1540px;
+  margin: auto;
+  padding: 14px 18px 18px;
+}
+
+.desk-grid {
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) minmax(420px, .92fr);
+  grid-template-areas:
+    "hero alert"
+    "center articles";
+  gap: 12px;
+  align-items: stretch;
+}
+
+.grid-hero {
+  grid-area: hero;
+}
+
+.grid-alert {
+  grid-area: alert;
+}
+
+.grid-center {
+  grid-area: center;
+}
+
+.grid-articles {
+  grid-area: articles;
+}
+
+.desk-status {
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) minmax(420px, .92fr);
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.status-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.status-bar {
+  border-radius: 20px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.status-label {
+  font-size: 13px;
+  font-weight: 950;
+  color: var(--muted);
+}
+
+.status-main {
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -.04em;
+}
+
+.status-main.is-danger {
+  color: var(--red);
+}
+
+.status-main.is-warning {
+  color: var(--amber);
+}
+
+.stat-tile {
+  border-radius: 20px;
+  padding: 12px 14px;
+  min-height: 72px;
+  height: 100%;
+}
+
+.stat-tile strong {
+  color: var(--muted);
+  font-size: 12px;
+  display: block;
+}
+
+.stat-tile span {
+  display: block;
+  font-size: 31px;
+  font-weight: 950;
+  line-height: 1.05;
+  letter-spacing: -.05em;
+}
+
+.stat-tile.hot {
+  background: linear-gradient(135deg, #07111f, #1e293b);
+  color: white;
+}
+
+.stat-tile.hot strong {
+  color: #cbd5e1;
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(520px, 1.05fr) minmax(420px, .95fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.alert-workbench {
+  grid-template-columns: minmax(520px, 1.05fr) minmax(420px, .95fr);
+}
+
+.decision-card {
+  height: 304px;
+  min-height: 304px;
+  border-radius: 26px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.decision-card:before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 9px;
+  background: var(--blue);
+}
+
+.decision-card.is-danger:before {
+  background: var(--red);
+}
+
+.decision-card.is-warning:before {
+  background: var(--amber);
+}
+
+.decision-card.is-good:before {
+  background: var(--green);
+}
+
+.decision-card:after {
+  content: "";
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,.18), transparent 65%);
+}
+
+.decision-kicker {
+  display: inline-flex;
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.decision-school {
+  font-size: clamp(42px, 4.2vw, 72px);
+  font-weight: 950;
+  letter-spacing: -.07em;
+  line-height: 1;
+  margin-top: 13px;
+}
+
+.decision-score {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  margin-top: 16px;
+  font-weight: 950;
+}
+
+.decision-score span {
+  font-size: clamp(42px, 4.6vw, 74px);
+  line-height: 1;
+}
+
+.decision-score small {
+  font-size: 26px;
+  color: var(--muted);
+}
+
+.decision-score em {
+  font-size: clamp(25px, 2.6vw, 40px);
+  font-style: normal;
+  margin-left: 8px;
+}
+
+.decision-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+  font-weight: 850;
+}
+
+.panel {
+  border-radius: 24px;
+  padding: 15px;
+  height: 304px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  letter-spacing: -.04em;
+}
+
+.panel-scroll {
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.panel-head span {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.alert-center {
+  height: 304px;
+  min-height: 304px;
+  border: 2px solid rgba(245,158,11,.30);
+}
+
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alert-card {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 12px;
+  border-radius: 18px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+}
+
+.danger-alert {
+  background: #fff1f2;
+  border-left: 7px solid var(--red);
+}
+
+.warning-alert {
+  background: #fffbeb;
+  border-left: 7px solid var(--amber);
+}
+
+.calm-alert {
+  background: #f8fafc;
+  border-left: 7px solid #94a3b8;
+  min-height: 92px;
+}
+
+.alert-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  color: white;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.danger-alert .alert-icon {
+  background: var(--red);
+}
+
+.warning-alert .alert-icon {
+  background: var(--amber);
+  color: #111827;
+}
+
+.calm-alert .alert-icon {
+  background: #64748b;
+}
+
+.alert-title {
+  font-size: 13px;
+  font-weight: 950;
+  color: var(--muted);
+}
+
+.alert-school {
+  font-size: 24px;
+  font-weight: 950;
+  letter-spacing: -.04em;
+  margin-top: 2px;
+}
+
+.alert-score {
+  font-size: 20px;
+  font-weight: 950;
+  margin-top: 3px;
+}
+
+.alert-meta {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+
+.micro-list,
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.micro-card {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 10px;
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(248,250,252,.86);
+  border-left: 5px solid var(--navy);
+  margin-bottom: 8px;
+}
+
+.micro-card.is-danger {
+  border-left-color: var(--red);
+  background: #fff1f2;
+}
+
+.micro-card.is-warning {
+  border-left-color: var(--amber);
+  background: #fffbeb;
+}
+
+.micro-card.is-good {
+  border-left-color: var(--green);
+}
+
+.micro-rank {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  color: white;
+  font-weight: 950;
+  font-size: 14px;
+}
+
+.micro-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.micro-score {
+  font-size: 17px;
+  font-weight: 950;
+  margin-top: 4px;
+}
+
+.micro-meta,
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.micro-action {
+  color: var(--red);
+  font-weight: 950;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-time {
+  font-weight: 950;
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.danger {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.good {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.neutral {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.link-btn {
+  background: linear-gradient(135deg, var(--blue), #1d4ed8);
+  color: white;
+  text-decoration: none;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 11px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.details-row {
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) minmax(420px, .92fr);
+  gap: 12px;
+  margin-top: 0;
+  align-items: start;
+}
+
+.bottom-row {
+  margin-top: 18px;
+  align-items: stretch;
+}
+
+.bottom-panel {
+  height: 260px;
+  min-height: 260px;
+}
+
+.bottom-panel .compact-detail {
+  max-height: 200px;
+  overflow: auto;
+}
+
+details.panel-detail {
+  background: var(--panel-solid);
+  border-radius: 20px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255,255,255,.72);
+  min-height: 300px;
+}
+
+.grid-center,
+.grid-articles {
+  height: 330px;
+}
+
+.grid-center .detail-body,
+.grid-articles .detail-body {
+  max-height: 275px;
+}
+
+details.panel-detail summary {
+  cursor: pointer;
+  font-weight: 950;
+  font-size: 16px;
+}
+
+.detail-body {
+  margin-top: 12px;
+  max-height: 330px;
+  overflow: auto;
+}
+
+.article-box {
+  border-radius: 16px;
+  padding: 13px;
+  margin: 10px 0;
+  background: #f8fafc;
+}
+
+.article-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.article-head h3 {
+  margin: 0 0 8px 0;
+}
+
+pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+button {
+  border: none;
+  background: var(--navy);
+  color: white;
+  padding: 9px 12px;
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: 950;
+}
+
+button.secondary {
+  background: #334155;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f8fafc;
+  color: #475569;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.hidden-copy {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+.empty-line {
+  color: var(--muted);
+  list-style: none;
+  padding: 8px 0;
+}
+
+.notice {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer-note {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 12px 0 0;
+  text-align: center;
+}
+
+.bottom-row .bottom-panel {
+  height: 260px;
+  min-height: 260px;
+}
+
+.bottom-row .detail-body {
+  max-height: 200px;
+}
+
+@media (max-width: 1180px) {
+  .desk-status {
+    grid-template-columns: 1fr;
+  }
+
+  .status-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .desk-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "hero"
+      "alert"
+      "center"
+      "articles";
+  }
+
+  .workbench,
+  .details-row {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    height: auto;
+    max-height: 360px;
+  }
+
+  .decision-card,
+  .alert-center,
+  .grid-center,
+  .grid-articles {
+    height: auto;
+    min-height: 260px;
+  }
+
+  details.panel-detail {
+    min-height: auto;
+  }
+
+  .bottom-row .bottom-panel {
+    height: auto;
+    min-height: auto;
+  }
+
+  .grid-center .detail-body,
+  .grid-articles .detail-body,
+  .bottom-row .detail-body {
+    max-height: 360px;
+  }
+}
+
+@media (max-width: 620px) {
+  .header-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .live-strip {
+    justify-content: flex-start;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .desk-status {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .decision-score {
+    flex-wrap: wrap;
+  }
+
+  .decision-score em {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .timeline-item {
+    grid-template-columns: 44px 1fr;
+  }
+
+  .timeline-link {
+    grid-column: 2;
+  }
+
+  table {
+    min-width: 860px;
+  }
+}
+</style>
+<script>
+function copyText(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    alert("コピーしました");
+  });
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver3.1 Grid</span></h1>
+      <div class="subtitle">Alert Center中心 ／ 編集TODO・タイムライン廃止 ／ 当日表示 ／ 49地区監視 ／ 事実限定運用</div>
+    </div>
+    <div class="live-strip">
+      <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
+      <div class="live-pill">最終：2026-06-29 07:19:12</div>
+      <div class="live-pill">次回目安：07:49</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="desk-status aligned-status">
+    <div class="status-bar">
+      <div>
+        <div class="status-label">デスク判断バー</div>
+        <div class="status-main ">通常</div>
+      </div>
+      <div class="notice">
+        メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。即時対応はAlert Centerへ集約します。
+      </div>
+    </div>
+
+    <div class="status-metrics">
+      <div class="stat-tile hot"><strong>速報必要</strong><span>0</span></div>
+      <div class="stat-tile"><strong>負けそう</strong><span>0</span></div>
+      <div class="stat-tile"><strong>当日表示</strong><span>123</span></div>
+      <div class="stat-tile"><strong>重要校</strong><span>4</span></div>
+    </div>
+  </section>
+
+  <section class="desk-grid">
+    <div class="grid-hero">
+<div class="decision-card is-warning">
+  <div class="decision-kicker">優先確認</div>
+  <div class="decision-school">八重山商工</div>
+  <div class="decision-score">
+    <span>3</span><small>－</small><span>4</span>
+    <em>那覇商</em>
+  </div>
+  <div class="decision-meta">
+    <span class="badge warning">ビハインド</span>
+    <span>★☆☆☆☆</span>
+    <span>沖縄大会</span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="decision-link"><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報ページ</a></div>
+</div>
+</div>
+
+    <div class="panel alert-center grid-alert" id="alerts">
+      <div class="panel-head">
+        <h2>Alert Center</h2>
+        <span>要対応</span>
+      </div>
+      <div class="panel-scroll">
+        <ul class="alert-list">
+<li class="alert-card calm-alert">
+  <div class="alert-icon">通常</div>
+  <div class="alert-body">
+    <div class="alert-title">現在、即時対応アラートはありません</div>
+    <div class="alert-meta">5回終了ビハインド、敗退が出た場合にここへ表示します。</div>
+  </div>
+</li>
+</ul>
+      </div>
+    </div>
+
+    <details class="panel-detail grid-center" open>
+      <summary>速報センター・重要校一覧</summary>
+      <div class="detail-body">
+        <p class="notice">ここは一覧表に一本化しました。カード重複を避け、スコア確認を優先します。</p>
+        <div class="table-wrap">
+          <table>
+            <tr><th>地区</th><th>回戦</th><th>重要校</th><th>注目度</th><th>スコア</th><th>判定</th><th>回</th><th>CSV情報</th><th>確認</th></tr>
+            
+<tr>
+<td>沖縄</td>
+<td></td>
+<td><strong>八重山商工</strong></td>
+<td><span class="stars">★☆☆☆☆</span></td>
+<td>3－4 那覇商</td>
+<td><span class="badge warning">ビハインド</span></td>
+<td></td>
+<td>CSV記載なし</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td><strong>旭丘</strong></td>
+<td><span class="stars">★☆☆☆☆</span></td>
+<td>9－2 江南</td>
+<td><span class="badge good">リード</span></td>
+<td></td>
+<td>CSV記載なし</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td><strong>至学館</strong></td>
+<td><span class="stars">★☆☆☆☆</span></td>
+<td>27－0 猿投農林</td>
+<td><span class="badge good">リード</span></td>
+<td></td>
+<td>CSV記載なし</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td><strong>興南</strong></td>
+<td><span class="stars">★☆☆☆☆</span></td>
+<td>5－3 宜野湾</td>
+<td><span class="badge good">リード</span></td>
+<td></td>
+<td>CSV記載なし</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel-detail grid-articles" open>
+      <summary>記事候補・敗戦校まとめ</summary>
+      <div class="detail-body">
+        <p class="notice">記事候補は必ず速報ページで確認してから使用してください。</p>
+        <pre id="all-articles" class="hidden-copy">記事候補なし</pre>
+        <button class="secondary" onclick="copyText('all-articles')">記事候補を全件コピー</button>
+        <p>なし</p>
+
+        <h3>敗退記事一覧</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>地区</th><th>学校</th><th>スコア</th><th>注目度</th><th>レビュー</th><th>確認</th></tr>
+            <tr><td colspan="6">なし</td></tr>
+          </table>
+        </div>
+
+        <h3>今日の主な敗戦校</h3>
+        <pre id="roundup-text">【今日の主な敗戦校】
+
+なし</pre>
+        <button onclick="copyText('roundup-text')">敗戦校まとめをコピー</button>
+
+        <h3>負けそうアラート</h3>
+        <ul><li>なし</li></ul>
+
+        <h3>本日敗戦校</h3>
+        <ul><li>なし</li></ul>
+      </div>
+    </details>
+  </section>
+
+  <section class="details-row bottom-row">
+    <details class="panel-detail bottom-panel">
+      <summary>新規アラート・巡回エラー</summary>
+      <div class="detail-body compact-detail">
+        <h3>新規アラート一覧</h3>
+        <div class="table-wrap">
+          <table><tr><th>種別</th><th>内容</th></tr><tr><td colspan="2">なし</td></tr></table>
+        </div>
+
+        <h3>巡回エラー</h3>
+        <ul><li>なし</li></ul>
+
+        <h3>巡回状況</h3>
+        <p>巡回成功：49地区 ／ 巡回失敗：0地区 ／ 当日表示：123件／元ページ検出：123件</p>
+      </div>
+    </details>
+
+    <details class="panel-detail bottom-panel">
+      <summary>検出試合一覧</summary>
+      <div class="detail-body compact-detail">
+        <div class="table-wrap">
+          <table><tr><th>地区</th><th>回戦</th><th>スコア</th><th>状況</th><th>回</th><th>確認</th></tr>
+<tr>
+<td>南北海道</td>
+<td></td>
+<td>札幌工 7－1 札幌東陵</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>南北海道</td>
+<td></td>
+<td>札幌開成・札幌北斗・北広島西・札幌東豊 0－20 立命館慶祥</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>南北海道</td>
+<td></td>
+<td>大麻 3－10 札幌創成</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>南北海道</td>
+<td></td>
+<td>札幌白石 5－4 札幌西</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>南北海道</td>
+<td></td>
+<td>札幌平岡 8－4 札幌山の手</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>北北海道</td>
+<td></td>
+<td>北見緑陵 3－6 紋別</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nhokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>北北海道</td>
+<td></td>
+<td>北見柏陽 9－2 美幌</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nhokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>北北海道</td>
+<td></td>
+<td>帯広緑陽 1－6 帯広北</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nhokkaido/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>青森</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aomori/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>青森</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aomori/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岩手</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/iwate/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岩手</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/iwate/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>秋田</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/akita/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>秋田</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/akita/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山形</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamagata/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山形</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamagata/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>宮城</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyagi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>宮城</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyagi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福島</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukushima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福島</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukushima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>茨城</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ibaraki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>茨城</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ibaraki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>栃木</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tochigi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>栃木</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tochigi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>群馬</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/gunma/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>群馬</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/gunma/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>埼玉</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/saitama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>埼玉</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/saitama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>千葉</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/chiba/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>千葉</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/chiba/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>東東京</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/etokyo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>東東京</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/etokyo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>西東京</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/wtokyo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>西東京</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/wtokyo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>神奈川</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kanagawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>神奈川</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kanagawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山梨</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamanashi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山梨</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamanashi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>新潟</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/niigata/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>新潟</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/niigata/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>長野</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nagano/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>長野</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nagano/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>富山</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/toyama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>富山</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/toyama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>石川</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ishikawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>石川</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ishikawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福井</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukui/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福井</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukui/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>静岡</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shizuoka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>静岡</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shizuoka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>名古屋市工芸 10－3 津島</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>高蔵寺 6－4 春日井</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>江南 2－9 旭丘</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>豊丘 2－3 名古屋大谷</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>千種 5－2 岡崎</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>新川 6－4 小牧工科</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>猿投農林 0－27 至学館</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>安城東 3－7 同朋</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>刈谷北 13－3 津島北・津島北翔</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>碧南 7－3 五条</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>蒲郡東 10－2 大府東</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>愛西工科 4－5 天白</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>小牧 4－2 東郷</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>三好 4－0 吉良</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>春日井西 8－4 緑丘</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛知</td>
+<td></td>
+<td>一宮商 0－9 桜台</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岐阜</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/gifu/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岐阜</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/gifu/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>三重</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/mie/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>三重</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/mie/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>滋賀</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shiga/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>滋賀</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shiga/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>京都</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kyoto/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>京都</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kyoto/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>大阪</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/osaka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>大阪</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/osaka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>兵庫</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hyogo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>兵庫</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hyogo/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>奈良</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nara/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>奈良</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nara/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>和歌山</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/wakayama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>和歌山</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/wakayama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岡山</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okayama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>岡山</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okayama/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>広島</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hiroshima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>広島</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hiroshima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>鳥取</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tottori/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>鳥取</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tottori/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>島根</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shimane/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>島根</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/shimane/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山口</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamaguchi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>山口</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamaguchi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>香川</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>香川</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>徳島</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tokushima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>徳島</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/tokushima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛媛</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ehime/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>愛媛</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/ehime/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>高知</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kochi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>高知</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kochi/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福岡</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukuoka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>福岡</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukuoka/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>佐賀</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/saga/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>佐賀</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/saga/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>長崎</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nagasaki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>長崎</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nagasaki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>熊本</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kumamoto/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>熊本</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kumamoto/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>大分</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/oita/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>大分</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/oita/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>宮崎</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyazaki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>宮崎</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyazaki/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>鹿児島</td>
+<td></td>
+<td>日本製紙石巻が大逆転で都市対抗切符 0－7 の7回…</td>
+<td>試合中</td>
+<td>7回</td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagoshima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>鹿児島</td>
+<td></td>
+<td>読売女子が阪神TWに 9－4 で勝利</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagoshima/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>北谷 3－1 那覇国際</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>美来工科 10－0 那覇</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>宜野湾 3－5 興南</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>知念 4－1 宜野座</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>北山 5－2 浦添商</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>八重山商工 3－4 那覇商</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>具志川 1－8 エナジックスポーツ</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>コザ 6－3 中部商</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+
+<tr>
+<td>沖縄</td>
+<td></td>
+<td>浦添工 0－9 美里工</td>
+<td>試合中</td>
+<td></td>
+<td><a class="link-btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
+</tr>
+</table>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <div class="footer-note">
+    このDashboardは30分ごとの巡回結果から生成されます。前日以前の終了試合は当日画面から除外します。Artifact版は固定HTMLです。
+  </div>
+</main>
+</body>
+</html>
