@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver4.1.2</title>
+<title>高校野球AI Desk Ver4.1.3</title>
 <style>
 :root {
   --bg: #eef2f8;
@@ -1048,14 +1048,14 @@ function copyText(id) {
 <header>
   <div class="header-inner">
     <div>
-      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.1.2 Stable</span></h1>
-      <div class="subtitle">運用版候補 ／ 待機表示修正 ／ Priority Engine v1 ／ 49地区監視 ／ 事実限定運用</div>
+      <h1>高校野球AI Desk <span style="font-size:13px;color:#93c5fd;">Ver4.1.3 Stable</span></h1>
+      <div class="subtitle">運用版候補 ／ 表示文言整理 ／ Priority Engine v1 ／ 49地区監視 ／ 事実限定運用</div>
     </div>
     <div class="live-strip">
       <div class="live-pill"><span class="live-dot"></span>自動巡回中</div>
       <div class="live-pill phase-pill phase-before">🟦 試合開始前</div>
-      <div class="live-pill">最終：2026-06-30 03:06:06 JST</div>
-      <div class="live-pill">次回目安：03:36 JST</div>
+      <div class="live-pill">最終：2026-06-30 03:31:51 JST</div>
+      <div class="live-pill">次回目安：04:01 JST</div>
       <div class="live-pill">画面自動更新：5分</div>
     </div>
   </div>
@@ -1070,22 +1070,22 @@ function copyText(id) {
         <div class="status-main ">通常</div>
       </div>
       <div class="notice">
-        本日の重要校・注目カードを確認する時間帯です。前日以前の終了試合はメイン表示しません。<br>メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。
+        重要校・注目カードを確認する時間帯です。前日以前の終了試合や古いスコア残りはメイン表示しません。<br>メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。
       </div>
     </div>
 
     <div class="status-metrics">
       <div class="stat-tile hot"><strong>速報必要</strong><span>0</span></div>
       <div class="stat-tile"><strong>負けそう</strong><span>0</span></div>
-      <div class="stat-tile"><strong>当日表示</strong><span>123</span></div>
+      <div class="stat-tile"><strong>検出試合</strong><span>123</span></div>
       <div class="stat-tile"><strong>重要校</strong><span>4</span></div>
     </div>
   </section>
 
   <section class="progress-panel">
     <div class="progress-head">
-      <strong>本日の進行状況</strong>
-      <span>当日表示 123試合</span>
+      <strong>検出試合の進行状況</strong>
+      <span>検出 123試合</span>
     </div>
     <div class="progress-bar">
       <div class="progress-seg seg-before" style="width:0%"></div>
@@ -1094,7 +1094,7 @@ function copyText(id) {
     </div>
     <div class="progress-legend">
       <span><b class="dot before"></b>試合開始前 0</span>
-      <span><b class="dot active"></b>試合中・確認対象 123</span>
+      <span><b class="dot active"></b>確認対象 123</span>
       <span><b class="dot finished"></b>本日終了 0</span>
     </div>
   </section>
@@ -1105,8 +1105,8 @@ function copyText(id) {
   <div class="decision-kicker">🟦 試合開始前</div>
   <div class="decision-school">現在の最優先なし</div>
   <div class="decision-meta">
-    <span>速報必要・負けそう・今回更新の重要校だけをメイン表示します。</span>
-    <span>古いスコア残りはHero Cardから除外しています。</span>
+    <span>速報必要・負けそう・今回更新があった重要校だけをメイン表示します。</span>
+    <span>速報ページに残っている古いスコアは、メイン表示から除外しています。</span>
   </div>
 </div>
 </div>
@@ -2374,7 +2374,7 @@ function copyText(id) {
   </section>
 
   <div class="footer-note">
-    このDashboardは30分ごとの巡回結果から生成されます。時刻は日本時間（JST）です。公開URLは5分ごとに画面を自動再読み込みします。進行バーは開始前・試合中・終了を推定表示します。Hero Cardは速報必要・負けそう・今回更新の重要校だけを表示します。
+    このDashboardは30分ごとの巡回結果から生成されます。時刻は日本時間（JST）です。公開URLは5分ごとに画面を自動再読み込みします。進行バーは開始前・試合中・終了を推定表示します。Hero Cardは速報必要・負けそう・今回更新があった重要校だけを表示します。古いスコア残りは除外します。
   </div>
 </main>
 </body>
