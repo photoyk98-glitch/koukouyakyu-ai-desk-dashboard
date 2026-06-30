@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.4.3 Compact</title>
+<title>高校野球AI Desk Ver5.4.4 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -31,6 +31,7 @@ h1{margin:0;font-size:25px;font-weight:950;letter-spacing:-.04em}
 #freshness-pill.fresh-danger .live-dot{background:#e11d48}
 #freshness-pill.fresh-warn{background:rgba(249,115,22,.18);border-color:rgba(249,115,22,.35)}
 #freshness-pill.fresh-danger{background:rgba(225,29,72,.18);border-color:rgba(225,29,72,.35)}
+.important-only{background:rgba(37,99,235,.16)!important;border-color:rgba(37,99,235,.35)!important;color:#dbeafe}
 .phase-before{background:#dbeafe!important;color:#1e3a8a!important}
 .phase-live{background:#ffedd5!important;color:#9a3412!important}
 .phase-done{background:#dcfce7!important;color:#166534!important}
@@ -128,18 +129,19 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 }
 </style>
 </head>
-<body data-generated-at="2026-06-30T13:03:41.990090+09:00">
+<body data-generated-at="2026-06-30T13:09:21.282789+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.4.3 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 上部カウンター整理 ／ 4ブロック構成</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.4.4 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 重要校限定明記 ／ 4ブロック構成</div>
   </div>
   <div class="live">
     <div class="pill" id="freshness-pill"><span class="live-dot"></span><span id="freshness-label">自動巡回中</span></div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 13:03:41 JST</div>
-    <div class="pill">次回目安：13:33 JST</div>
+    <div class="pill">最終：2026-06-30 13:09:21 JST</div>
+    <div class="pill">次回目安：13:39 JST</div>
     <div class="pill">画面自動更新：5分</div>
+    <div class="pill important-only">重要校限定</div>
   </div>
 </header>
 
@@ -150,7 +152,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
         <div class="status-label">デスク判断バー</div>
         <div class="status-main">通常</div>
       </div>
-      <div class="status-note">重要校・注目カードを確認する時間帯です。古いスコア残りはメイン表示しません。<br>メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。</div>
+      <div class="status-note">重要校・注目カードを確認する時間帯です。古いスコア残りはメイン表示しません。<br>監視・通知は重要校限定です。メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。</div>
     </div>
     <div class="metrics">
       <div class="metric hot"><strong>速報必要</strong><span>0</span></div>
@@ -230,7 +232,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
     </details>
   </section>
 
-  <div class="footer">このDashboardは30分ごとの巡回結果から生成されます。上部の数字は表示対象の重要校ベースです。時刻は日本時間（JST）です。</div>
+  <div class="footer">このDashboardは30分ごとの巡回結果から生成されます。表示・通知は重要校限定、上部の数字は表示対象ベースです。時刻は日本時間（JST）です。</div>
 </main>
 
 <script>
