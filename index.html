@@ -4,29 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver6.2 Stable</title>
+<title>高校野球AI Desk Ver6.3 Region Filter</title>
 <style>
 :root{--ink:#07111f;--muted:#64748b;--panel:rgba(255,255,255,.88);--line:rgba(15,23,42,.10);--shadow:0 12px 34px rgba(15,23,42,.10);--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#22c55e}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf1ff 0%,#eef7ff 45%,#e7fbff 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}header{background:#111827;color:white;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}h1{margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em}.version{font-size:12px;color:#93c5fd;margin-left:6px}.subtitle{font-size:13px;color:#cbd5e1;margin-top:4px}.live{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:6px}#freshness-pill.fresh-warn .live-dot{background:#f97316}#freshness-pill.fresh-danger .live-dot{background:#e11d48}#freshness-pill.fresh-warn{background:rgba(249,115,22,.18);border-color:rgba(249,115,22,.35)}#freshness-pill.fresh-danger{background:rgba(225,29,72,.18);border-color:rgba(225,29,72,.35)}.important-only{background:rgba(37,99,235,.16)!important;border-color:rgba(37,99,235,.35)!important;color:#dbeafe}.phase-before{background:#dbeafe!important;color:#1e3a8a!important}.phase-live{background:#ffedd5!important;color:#9a3412!important}.phase-done{background:#dcfce7!important;color:#166534!important}main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}.top{display:grid;grid-template-columns:minmax(520px,1fr) minmax(520px,.9fr);gap:10px;margin-bottom:10px;align-items:stretch}.status{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;min-height:62px}.status-label{font-size:12px;color:var(--muted);font-weight:850}.status-main{font-size:21px;font-weight:950}.status-note{font-size:13px;color:#475569;line-height:1.55}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.metric{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.70);border-radius:16px;padding:10px 12px;min-height:62px}.metric.hot{background:#111827;color:white}.metric strong{display:block;font-size:12px;color:inherit;opacity:.85}.metric span{display:block;font-size:30px;font-weight:950;line-height:1.1}.progress{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:16px;padding:9px 12px;margin-bottom:10px;box-shadow:var(--shadow)}.progress-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:950;margin-bottom:6px}.progress-head span{color:var(--muted);font-size:12px}.bar{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden;display:flex}.seg.before{background:#60a5fa}.seg.active{background:#fb923c}.seg.finished{background:#22c55e}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;font-size:12px;color:var(--muted);font-weight:850}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.dot.before{background:#60a5fa}.dot.active{background:#fb923c}.dot.finished{background:#22c55e}.grid{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;align-items:stretch}.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:12px 14px;box-shadow:var(--shadow);min-height:220px;height:220px;overflow:hidden}.hero-card{border-left:10px solid var(--blue)}.hero-card.warn{border-left-color:#f59e0b}.hero-card.danger{border-left-color:#e11d48}.hero-card.ok{border-left-color:#22c55e}.hero-card.neutral{border-left-color:#60a5fa}.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950;line-height:1.1}.hero-school{font-size:clamp(32px,2.8vw,48px);font-weight:950;letter-spacing:-.07em;margin-top:6px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero-score{display:flex;align-items:baseline;gap:8px;margin-top:3px;line-height:1}.hero-score span{font-size:clamp(34px,3.3vw,52px);font-weight:950;line-height:1}.hero-score small{font-size:18px;color:var(--muted)}.hero-score em{font-style:normal;font-size:clamp(18px,1.6vw,28px);font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:4px;line-height:1.15}.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:5px;color:#334155;line-height:1.3}.hero-reason strong{display:block;color:#111827;font-size:13px;line-height:1.25}.hero-reason span{font-size:12px;line-height:1.35}.hero-actions{margin-top:5px}.hero-card.neutral .hero-school{font-size:clamp(30px,2.7vw,44px);margin-top:22px;white-space:normal}.btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:950;border:0;cursor:pointer}.btn.disabled{background:#94a3b8}.panel h2{margin:0 0 7px;font-size:20px}.alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}.alert-stat{border-radius:12px;padding:6px 9px;border:1px solid var(--line);background:#f8fafc}.alert-stat strong{display:block;font-size:16px;font-weight:950}.alert-stat span{font-size:11px;color:var(--muted);font-weight:900}.alert-stat.danger{background:#fff1f2;color:#be123c}.alert-stat.warn{background:#fffbeb;color:#92400e}.alert-stat.info{background:#eff6ff;color:#1d4ed8}.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:7px;max-height:140px;overflow:auto}.alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:8px 11px}.alert-card.warn{border-left-color:#f59e0b;background:#fffbeb}.alert-card.danger{border-left-color:#e11d48;background:#fff1f2}.alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:14px;font-weight:900;margin:3px 0 5px}.alert-note{font-size:12px;color:var(--muted)}.mini-list{margin:4px 0 0;padding-left:18px;line-height:1.45}.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:10px}details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:430px;overflow:hidden}summary{font-size:18px;font-weight:950;cursor:pointer}.notice{font-size:13px;color:var(--muted)}.table-wrap{max-height:360px;overflow:auto;margin-top:10px}table{width:100%;border-collapse:collapse;font-size:13px}th{position:sticky;top:0;background:#f8fafc;color:#475569;text-align:left;font-size:12px;padding:9px;border-bottom:1px solid var(--line)}td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}.subline{font-size:11px;color:var(--muted);font-weight:800;margin-top:3px;line-height:1.35}td:nth-child(1),td:nth-child(3),td:nth-child(5){white-space:nowrap}td:nth-child(5){text-align:right}.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.badge.warn{background:#fef3c7;color:#92400e}.badge.danger{background:#ffe4e6;color:#be123c}.badge.ok{background:#dcfce7;color:#166534}.priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:950;white-space:nowrap}.p-danger{background:#ffe4e6;color:#be123c}.p-warn{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}.feature-row{display:inline-flex;gap:5px;flex-wrap:wrap;margin:5px 0 0}.feature-row span{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;border-radius:999px;padding:3px 7px;font-size:11px;font-weight:950}.defeat-list{max-height:315px;overflow:auto;margin-top:10px;display:grid;gap:10px}.defeat-card{background:#fff;border:1px solid var(--line);border-left:7px solid var(--red);border-radius:16px;padding:12px}.defeat-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.defeat-pref{font-size:12px;color:var(--muted);font-weight:900}.defeat-school{font-size:20px;font-weight:950;letter-spacing:-.04em;margin-top:2px}.defeat-score{font-size:18px;font-weight:950;white-space:nowrap}.defeat-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}.ai-comment{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin-top:8px}.ai-comment strong{font-size:12px;color:#334155}.ai-comment p{margin:4px 0 0;font-size:13px;line-height:1.6;color:#111827;white-space:pre-line}.review-line{margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:12px;color:#475569;font-weight:850;line-height:1.45}.defeat-actions{margin-top:8px}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850}.roundup-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:10px 12px;margin-top:10px}.roundup-box strong{font-size:13px;color:#9a3412}.roundup-box pre{white-space:pre-wrap;margin:6px 0 0;font-size:12px;line-height:1.55;color:#431407}.footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:520px}.hero-card,.panel{height:auto;min-height:auto}}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf1ff 0%,#eef7ff 45%,#e7fbff 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}header{background:#111827;color:white;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}h1{margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em}.version{font-size:12px;color:#93c5fd;margin-left:6px}.subtitle{font-size:13px;color:#cbd5e1;margin-top:4px}.live{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}.live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:6px}#freshness-pill.fresh-warn .live-dot{background:#f97316}#freshness-pill.fresh-danger .live-dot{background:#e11d48}#freshness-pill.fresh-warn{background:rgba(249,115,22,.18);border-color:rgba(249,115,22,.35)}#freshness-pill.fresh-danger{background:rgba(225,29,72,.18);border-color:rgba(225,29,72,.35)}.important-only{background:rgba(37,99,235,.16)!important;border-color:rgba(37,99,235,.35)!important;color:#dbeafe}.phase-before{background:#dbeafe!important;color:#1e3a8a!important}.phase-live{background:#ffedd5!important;color:#9a3412!important}.phase-done{background:#dcfce7!important;color:#166534!important}main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}.region-filter{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:16px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow)}.region-filter-head{font-size:13px;font-weight:950;color:#334155;margin-bottom:8px}.region-buttons{display:flex;gap:7px;flex-wrap:wrap}.region-btn{border:1px solid #cbd5e1;background:#fff;color:#334155;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:950;cursor:pointer}.region-btn.active{background:#111827;color:#fff;border-color:#111827}.region-hidden{display:none!important}.hero-candidate{display:none}.hero-empty{display:none}.top{display:grid;grid-template-columns:minmax(520px,1fr) minmax(520px,.9fr);gap:10px;margin-bottom:10px;align-items:stretch}.status{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;min-height:62px}.status-label{font-size:12px;color:var(--muted);font-weight:850}.status-main{font-size:21px;font-weight:950}.status-note{font-size:13px;color:#475569;line-height:1.55}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.metric{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.70);border-radius:16px;padding:10px 12px;min-height:62px}.metric.hot{background:#111827;color:white}.metric strong{display:block;font-size:12px;color:inherit;opacity:.85}.metric span{display:block;font-size:30px;font-weight:950;line-height:1.1}.progress{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:16px;padding:9px 12px;margin-bottom:10px;box-shadow:var(--shadow)}.progress-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:950;margin-bottom:6px}.progress-head span{color:var(--muted);font-size:12px}.bar{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden;display:flex}.seg.before{background:#60a5fa}.seg.active{background:#fb923c}.seg.finished{background:#22c55e}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;font-size:12px;color:var(--muted);font-weight:850}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.dot.before{background:#60a5fa}.dot.active{background:#fb923c}.dot.finished{background:#22c55e}.grid{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;align-items:stretch}.hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:12px 14px;box-shadow:var(--shadow);min-height:220px;height:220px;overflow:hidden}.hero-card{border-left:10px solid var(--blue)}.hero-card.warn{border-left-color:#f59e0b}.hero-card.danger{border-left-color:#e11d48}.hero-card.ok{border-left-color:#22c55e}.hero-card.neutral{border-left-color:#60a5fa}.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950;line-height:1.1}.hero-school{font-size:clamp(32px,2.8vw,48px);font-weight:950;letter-spacing:-.07em;margin-top:6px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero-score{display:flex;align-items:baseline;gap:8px;margin-top:3px;line-height:1}.hero-score span{font-size:clamp(34px,3.3vw,52px);font-weight:950;line-height:1}.hero-score small{font-size:18px;color:var(--muted)}.hero-score em{font-style:normal;font-size:clamp(18px,1.6vw,28px);font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hero-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:4px;line-height:1.15}.hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:5px;color:#334155;line-height:1.3}.hero-reason strong{display:block;color:#111827;font-size:13px;line-height:1.25}.hero-reason span{font-size:12px;line-height:1.35}.hero-actions{margin-top:5px}.hero-card.neutral .hero-school{font-size:clamp(30px,2.7vw,44px);margin-top:22px;white-space:normal}.btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:950;border:0;cursor:pointer}.btn.disabled{background:#94a3b8}.panel h2{margin:0 0 7px;font-size:20px}.alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}.alert-stat{border-radius:12px;padding:6px 9px;border:1px solid var(--line);background:#f8fafc}.alert-stat strong{display:block;font-size:16px;font-weight:950}.alert-stat span{font-size:11px;color:var(--muted);font-weight:900}.alert-stat.danger{background:#fff1f2;color:#be123c}.alert-stat.warn{background:#fffbeb;color:#92400e}.alert-stat.info{background:#eff6ff;color:#1d4ed8}.alert-list{list-style:none;margin:0;padding:0;display:grid;gap:7px;max-height:140px;overflow:auto}.alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:8px 11px}.alert-card.warn{border-left-color:#f59e0b;background:#fffbeb}.alert-card.danger{border-left-color:#e11d48;background:#fff1f2}.alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:14px;font-weight:900;margin:3px 0 5px}.alert-note{font-size:12px;color:var(--muted)}.mini-list{margin:4px 0 0;padding-left:18px;line-height:1.45}.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:10px}details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:430px;overflow:hidden}summary{font-size:18px;font-weight:950;cursor:pointer}.notice{font-size:13px;color:var(--muted)}.table-wrap{max-height:360px;overflow:auto;margin-top:10px}table{width:100%;border-collapse:collapse;font-size:13px}th{position:sticky;top:0;background:#f8fafc;color:#475569;text-align:left;font-size:12px;padding:9px;border-bottom:1px solid var(--line)}td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}.subline{font-size:11px;color:var(--muted);font-weight:800;margin-top:3px;line-height:1.35}td:nth-child(1),td:nth-child(3),td:nth-child(5){white-space:nowrap}td:nth-child(5){text-align:right}.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.badge.warn{background:#fef3c7;color:#92400e}.badge.danger{background:#ffe4e6;color:#be123c}.badge.ok{background:#dcfce7;color:#166534}.priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:950;white-space:nowrap}.p-danger{background:#ffe4e6;color:#be123c}.p-warn{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}.feature-row{display:inline-flex;gap:5px;flex-wrap:wrap;margin:5px 0 0}.feature-row span{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;border-radius:999px;padding:3px 7px;font-size:11px;font-weight:950}.defeat-list{max-height:315px;overflow:auto;margin-top:10px;display:grid;gap:10px}.defeat-card{background:#fff;border:1px solid var(--line);border-left:7px solid var(--red);border-radius:16px;padding:12px}.defeat-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.defeat-pref{font-size:12px;color:var(--muted);font-weight:900}.defeat-school{font-size:20px;font-weight:950;letter-spacing:-.04em;margin-top:2px}.defeat-score{font-size:18px;font-weight:950;white-space:nowrap}.defeat-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}.ai-comment{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin-top:8px}.ai-comment strong{font-size:12px;color:#334155}.ai-comment p{margin:4px 0 0;font-size:13px;line-height:1.6;color:#111827;white-space:pre-line}.review-line{margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:12px;color:#475569;font-weight:850;line-height:1.45}.defeat-actions{margin-top:8px}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850}.roundup-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:10px 12px;margin-top:10px}.roundup-box strong{font-size:13px;color:#9a3412}.roundup-box pre{white-space:pre-wrap;margin:6px 0 0;font-size:12px;line-height:1.55;color:#431407}.footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:520px}.hero-card,.panel{height:auto;min-height:auto}}
 </style>
 </head>
-<body data-generated-at="2026-07-01T06:20:42.505338+09:00">
+<body data-generated-at="2026-07-01T06:40:38.612720+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver6.2 Stable</span></h1>
-    <div class="subtitle">運用版 ／ Priority Engine Ver2 ／ AI戦評Ver2 ／ 重要校限定 ／ 内部指標は原稿非使用</div>
+    <h1>高校野球AI Desk <span class="version">Ver6.3 Region Filter</span></h1>
+    <div class="subtitle">運用版 ／ Priority Engine Ver2 ／ AI戦評Ver2 ／ 地域フィルター ／ 内部指標は原稿非使用</div>
   </div>
   <div class="live">
     <div class="pill" id="freshness-pill"><span class="live-dot"></span><span id="freshness-label">自動巡回中</span></div>
     <div class="pill phase-done">🟩 本日対象なし</div>
-    <div class="pill">最終：2026-07-01 06:20:42 JST</div>
-    <div class="pill">次回目安：06:50 JST</div>
+    <div class="pill">最終：2026-07-01 06:40:38 JST</div>
+    <div class="pill">次回目安：07:10 JST</div>
     <div class="pill">画面自動更新：5分</div>
     <div class="pill important-only">重要校限定</div>
   </div>
 </header>
 
 <main>
+  <section class="region-filter">
+    <div class="region-filter-head">表示地域を選択（保存しません。開くたびに全国表示です）</div>
+    <div class="region-buttons"><button type="button" class="region-btn active" data-region-filter="全国">全国</button><button type="button" class="region-btn" data-region-filter="北海道">北海道</button><button type="button" class="region-btn" data-region-filter="東北">東北</button><button type="button" class="region-btn" data-region-filter="関東">関東</button><button type="button" class="region-btn" data-region-filter="北信越">北信越</button><button type="button" class="region-btn" data-region-filter="東海">東海</button><button type="button" class="region-btn" data-region-filter="近畿">近畿</button><button type="button" class="region-btn" data-region-filter="中国">中国</button><button type="button" class="region-btn" data-region-filter="四国">四国</button><button type="button" class="region-btn" data-region-filter="九州・沖縄">九州・沖縄</button></div>
+  </section>
+
   <section class="top">
     <div class="status">
       <div>
@@ -36,38 +41,38 @@
       <div class="status-note">現在、メイン表示すべき当日対象はありません。<br>監視・通知は重要校限定です。メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。</div>
     </div>
     <div class="metrics">
-      <div class="metric hot"><strong>速報必要</strong><span>0</span></div>
-      <div class="metric"><strong>負けそう</strong><span>0</span></div>
-      <div class="metric"><strong>表示重要校</strong><span>0</span></div>
-      <div class="metric"><strong>敗退候補</strong><span>0</span></div>
+      <div class="metric hot"><strong>速報必要</strong><span id="metric-defeat">0</span></div>
+      <div class="metric"><strong>負けそう</strong><span id="metric-behind">0</span></div>
+      <div class="metric"><strong>表示重要校</strong><span id="metric-center">0</span></div>
+      <div class="metric"><strong>敗退候補</strong><span id="metric-defeat-items">0</span></div>
     </div>
   </section>
 
   <section class="progress">
-    <div class="progress-head"><strong>表示対象の進行状況</strong><span>重要校 0件</span></div>
+    <div class="progress-head"><strong>表示対象の進行状況</strong><span id="progress-total">重要校 0件</span></div>
     <div class="bar">
-      <div class="seg before" style="width:0%"></div>
-      <div class="seg active" style="width:100%"></div>
-      <div class="seg finished" style="width:0%"></div>
+      <div class="seg before" id="seg-before" style="width:0%"></div>
+      <div class="seg active" id="seg-active" style="width:100%"></div>
+      <div class="seg finished" id="seg-finished" style="width:0%"></div>
     </div>
     <div class="legend">
-      <span><b class="dot before"></b>試合開始前 0</span>
-      <span><b class="dot active"></b>確認対象 0</span>
-      <span><b class="dot finished"></b>本日終了 0</span>
+      <span><b class="dot before"></b>試合開始前 <span id="count-before">0</span></span>
+      <span><b class="dot active"></b>確認対象 <span id="count-active">0</span></span>
+      <span><b class="dot finished"></b>本日終了 <span id="count-finished">0</span></span>
     </div>
   </section>
 
   <section class="grid">
-    
-<section class="hero-card neutral">
+    <div id="hero-region-wrap">
+<section class="hero-card neutral hero-empty">
   <div class="hero-kicker">🟩 本日対象なし</div>
   <div class="hero-school">現在の最優先なし</div>
   <div class="hero-reason">
     <strong>メイン表示なし</strong>
-    <span>速報必要・負けそう・今回更新があった重要校だけを表示します。古いスコア残りは除外しています。</span>
+    <span>選択地域に、速報必要・負けそう・今回更新があった重要校はありません。</span>
   </div>
 </section>
-
+</div>
 
     <section class="panel alert-panel">
       <h2>Alert Center</h2>
@@ -136,6 +141,81 @@
     }
   }
 
+  function setText(id, text){
+    const el = document.getElementById(id);
+    if(el) el.textContent = text;
+  }
+
+  function showHero(selected){
+    const candidates = Array.from(document.querySelectorAll(".hero-candidate"));
+    const empty = document.querySelector(".hero-empty");
+    let shown = false;
+    candidates.forEach(card => {
+      const region = card.getAttribute("data-region") || "その他";
+      const match = selected === "全国" || region === selected;
+      if(match && !shown){
+        card.style.display = "block";
+        shown = true;
+      }else{
+        card.style.display = "none";
+      }
+    });
+    if(empty) empty.style.display = shown ? "none" : "block";
+  }
+
+  function applyRegion(selected){
+    document.querySelectorAll(".region-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-region-filter") === selected);
+    });
+
+    document.querySelectorAll(".region-item").forEach(el => {
+      const region = el.getAttribute("data-region") || "その他";
+      const match = selected === "全国" || region === selected;
+      el.classList.toggle("region-hidden", !match);
+    });
+
+    showHero(selected);
+
+    const visibleRows = Array.from(document.querySelectorAll(".center-row:not(.region-hidden)"));
+    const visibleDefeats = Array.from(document.querySelectorAll(".defeat-card:not(.region-hidden)"));
+    const visibleDefeatAlerts = Array.from(document.querySelectorAll('.alert-card[data-alert-type="defeat"]:not(.region-hidden)'));
+    const visibleBehindAlerts = Array.from(document.querySelectorAll('.alert-card[data-alert-type="behind5"]:not(.region-hidden)'));
+
+    setText("metric-center", String(visibleRows.length));
+    setText("metric-defeat-items", String(visibleDefeats.length));
+    setText("metric-defeat", String(visibleDefeatAlerts.length));
+    setText("metric-behind", String(visibleBehindAlerts.length));
+    setText("progress-total", "重要校 " + visibleRows.length + "件");
+
+    let before = 0, active = 0, finished = 0;
+    visibleRows.forEach(row => {
+      const phase = row.getAttribute("data-phase");
+      if(phase === "before") before += 1;
+      else if(phase === "finished") finished += 1;
+      else active += 1;
+    });
+    const denom = Math.max(1, visibleRows.length);
+    const beforePct = Math.round(before / denom * 100);
+    const finishedPct = Math.round(finished / denom * 100);
+    const activePct = Math.max(0, 100 - beforePct - finishedPct);
+
+    const segBefore = document.getElementById("seg-before");
+    const segActive = document.getElementById("seg-active");
+    const segFinished = document.getElementById("seg-finished");
+    if(segBefore) segBefore.style.width = beforePct + "%";
+    if(segActive) segActive.style.width = activePct + "%";
+    if(segFinished) segFinished.style.width = finishedPct + "%";
+
+    setText("count-before", String(before));
+    setText("count-active", String(active));
+    setText("count-finished", String(finished));
+  }
+
+  document.querySelectorAll(".region-btn").forEach(btn => {
+    btn.addEventListener("click", () => applyRegion(btn.getAttribute("data-region-filter") || "全国"));
+  });
+
+  applyRegion("全国");
   updateFreshness();
   setInterval(updateFreshness, 60000);
 })();
