@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.0.4 Compact</title>
+<title>高校野球AI Desk Ver5.1.0 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -90,6 +90,18 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 .badge.is-warning{background:#fef3c7;color:#92400e}.badge.is-danger{background:#ffe4e6;color:#be123c}.badge.is-ok{background:#dcfce7;color:#166534}
 .priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:950;white-space:nowrap}
 .p-danger{background:#ffe4e6;color:#be123c}.p-warning{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}
+.defeat-list{max-height:320px;overflow:auto;margin-top:10px;display:grid;gap:10px}
+.defeat-card{background:#fff;border:1px solid var(--line);border-left:7px solid var(--red);border-radius:16px;padding:12px}
+.defeat-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.defeat-pref{font-size:12px;color:var(--muted);font-weight:900}
+.defeat-school{font-size:20px;font-weight:950;letter-spacing:-.04em;margin-top:2px}
+.defeat-score{font-size:18px;font-weight:950;white-space:nowrap}
+.defeat-meta{display:flex;gap:8px;align-items:center;margin-top:6px}
+.ai-comment{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin-top:8px}
+.ai-comment strong{font-size:12px;color:#334155}
+.ai-comment p{margin:4px 0 0;font-size:13px;line-height:1.55;color:#111827}
+.defeat-actions{margin-top:8px}
+.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850}
 .footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
 @media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:420px}.hero-card,.panel{min-height:auto}}
 @media(min-width:1181px){
@@ -114,14 +126,14 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 <body>
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.0.4 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 速報センター列整理 ／ Priority Engine v1 ／ 北順速報センター</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.1.0 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 重要校敗戦一覧・AI戦評 ／ Priority Engine v1</div>
   </div>
   <div class="live">
     <div class="pill"><span class="live-dot"></span>自動巡回中</div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 07:54:09 JST</div>
-    <div class="pill">次回目安：08:24 JST</div>
+    <div class="pill">最終：2026-06-30 09:53:01 JST</div>
+    <div class="pill">次回目安：10:23 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
@@ -234,16 +246,17 @@ td:nth-child(5){white-space:nowrap;text-align:right}
     </details>
 
     <details open>
-      <summary>記事候補・敗戦校まとめ</summary>
-      <p class="notice">記事候補は必ず速報ページで確認してから使用してください。</p>
-      <button class="btn" onclick="navigator.clipboard && navigator.clipboard.writeText(document.getElementById('article-copy').innerText)">記事候補を全件コピー</button>
-      <div class="table-wrap">
-        <table>
-          <tr><th>地区</th><th>学校</th><th>スコア</th><th>注目度</th><th>確認</th></tr>
-          <tr><td colspan="5">なし</td></tr>
-        </table>
+      <summary>重要校敗戦一覧・AI戦評</summary>
+      <p class="notice">敗戦候補だけを表示します。AI戦評は事実ベースの短文ドラフトです。必ず速報ページで確認してください。</p>
+      <button class="btn" onclick="navigator.clipboard && navigator.clipboard.writeText(document.getElementById('defeat-copy').innerText)">敗戦一覧をコピー</button>
+      <div class="defeat-list">
+        
+<div class="empty-card">
+  現在、重要校の敗戦候補はありません。
+</div>
+
       </div>
-      <pre id="article-copy" style="display:none">&lt;tr&gt;&lt;td colspan=&quot;5&quot;&gt;なし&lt;/td&gt;&lt;/tr&gt;</pre>
+      <pre id="defeat-copy" style="display:none">現在、重要校の敗戦候補はありません。</pre>
     </details>
   </section>
 
