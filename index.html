@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.2.1 Compact</title>
+<title>高校野球AI Desk Ver5.3.0 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -113,8 +113,19 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 .todo-school{font-size:18px;font-weight:950;margin-top:6px;letter-spacing:-.04em}
 .todo-action{font-size:13px;color:#334155;line-height:1.45;margin-top:4px}
 .todo-link{margin-top:8px}
+.ranking-section{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.ranking-section details{height:auto;min-height:132px}
+.ranking-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.rank-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px;display:grid;grid-template-columns:38px 1fr auto auto;gap:10px;align-items:center}
+.rank-card.is-empty{grid-template-columns:1fr;color:var(--muted)}
+.rank-num{width:30px;height:30px;border-radius:50%;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:950}
+.rank-school{font-size:17px;font-weight:950;letter-spacing:-.04em}
+.rank-sub{font-size:12px;color:var(--muted);font-weight:850;margin-top:2px}
+.rank-badge-wrap{display:flex;gap:6px;align-items:center;white-space:nowrap}
+.rank-score{font-size:11px;color:var(--muted);font-weight:900}
+.rank-action{white-space:nowrap}
 .footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
-@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.todo-list{grid-template-columns:1fr}details{height:auto;max-height:420px}.hero-card,.panel{min-height:auto}}
+@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.todo-list{grid-template-columns:1fr}.rank-card{grid-template-columns:34px 1fr}.rank-badge-wrap,.rank-action{grid-column:2}details{height:auto;max-height:420px}.hero-card,.panel{min-height:auto}}
 @media(min-width:1181px){
   .grid > .hero-card,
   .grid > .panel{
@@ -137,14 +148,14 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 <body>
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.2.1 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 当日カウンター統一 ／ 編集TODO ／ AI戦評</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.3.0 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 記事価値ランキング ／ 編集TODO ／ AI戦評</div>
   </div>
   <div class="live">
     <div class="pill"><span class="live-dot"></span>自動巡回中</div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 10:50:19 JST</div>
-    <div class="pill">次回目安：11:20 JST</div>
+    <div class="pill">最終：2026-06-30 11:56:55 JST</div>
+    <div class="pill">次回目安：12:26 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
@@ -233,6 +244,21 @@ td:nth-child(5){white-space:nowrap;text-align:right}
   <div class="todo-school">興南</div>
   <div class="todo-action">速報価値を継続確認：5－3 宜野湾</div>
   <div class="todo-link"><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報確認</a></div>
+</li>
+</ul>
+    </details>
+  </section>
+
+  <section class="ranking-section">
+    <details open>
+      <summary>記事価値ランキング</summary>
+      <p class="notice">速報必要・負けそう・ビハインドをPriority順に表示します。記事化の優先確認に使います。</p>
+      <ul class="ranking-list">
+<li class="rank-card is-empty">
+  <div class="rank-main">
+    <div class="rank-school">現在、記事価値ランキング対象はありません</div>
+    <div class="rank-sub">速報必要・負けそう・ビハインドが出ると表示します。</div>
+  </div>
 </li>
 </ul>
     </details>
