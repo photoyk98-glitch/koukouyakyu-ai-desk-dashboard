@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.4.0 Compact</title>
+<title>高校野球AI Desk Ver5.4.1 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -27,6 +27,10 @@ h1{margin:0;font-size:25px;font-weight:950;letter-spacing:-.04em}
 .live{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}
 .live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:6px}
+#freshness-pill.fresh-warn .live-dot{background:#f97316}
+#freshness-pill.fresh-danger .live-dot{background:#e11d48}
+#freshness-pill.fresh-warn{background:rgba(249,115,22,.18);border-color:rgba(249,115,22,.35)}
+#freshness-pill.fresh-danger{background:rgba(225,29,72,.18);border-color:rgba(225,29,72,.35)}
 .phase-before{background:#dbeafe!important;color:#1e3a8a!important}
 .phase-live{background:#ffedd5!important;color:#9a3412!important}
 .phase-done{background:#dcfce7!important;color:#166534!important}
@@ -123,17 +127,17 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 }
 </style>
 </head>
-<body>
+<body data-generated-at="2026-06-30T12:40:18.553972+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.4.0 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 4ブロック構成 ／ 重要校敗戦一覧・AI戦評</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.4.1 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 更新鮮度ステータス ／ 4ブロック構成</div>
   </div>
   <div class="live">
-    <div class="pill"><span class="live-dot"></span>自動巡回中</div>
+    <div class="pill" id="freshness-pill"><span class="live-dot"></span><span id="freshness-label">自動巡回中</span></div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 12:12:17 JST</div>
-    <div class="pill">次回目安：12:42 JST</div>
+    <div class="pill">最終：2026-06-30 12:40:18 JST</div>
+    <div class="pill">次回目安：13:10 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
@@ -227,5 +231,36 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 
   <div class="footer">このDashboardは30分ごとの巡回結果から生成されます。時刻は日本時間（JST）です。公開URLは5分ごとに自動再読み込みします。</div>
 </main>
+
+<script>
+(function(){
+  const body = document.body;
+  const generated = body.getAttribute("data-generated-at");
+  const pill = document.getElementById("freshness-pill");
+  const label = document.getElementById("freshness-label");
+  if(!generated || !pill || !label) return;
+
+  function updateFreshness(){
+    const gen = new Date(generated);
+    const now = new Date();
+    const diffMin = Math.floor((now - gen) / 60000);
+
+    pill.classList.remove("fresh-warn", "fresh-danger");
+    if(diffMin >= 120){
+      pill.classList.add("fresh-danger");
+      label.textContent = "要確認：" + diffMin + "分更新なし";
+    }else if(diffMin >= 60){
+      pill.classList.add("fresh-warn");
+      label.textContent = "更新遅延：" + diffMin + "分";
+    }else{
+      label.textContent = "自動巡回中";
+    }
+  }
+
+  updateFreshness();
+  setInterval(updateFreshness, 60000);
+})();
+</script>
+
 </body>
 </html>
