@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.1.0 Compact</title>
+<title>高校野球AI Desk Ver5.1.1 Compact</title>
 <style>
 :root{
   --bg:#eef4fb;
@@ -126,14 +126,14 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 <body>
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.1.0 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 重要校敗戦一覧・AI戦評 ／ Priority Engine v1</div>
+    <h1>高校野球AI Desk <span class="version">Ver5.1.1 Compact</span></h1>
+    <div class="subtitle">運用版候補 ／ 当日重要校一覧 ／ AI戦評</div>
   </div>
   <div class="live">
     <div class="pill"><span class="live-dot"></span>自動巡回中</div>
     <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 09:53:01 JST</div>
-    <div class="pill">次回目安：10:23 JST</div>
+    <div class="pill">最終：2026-06-30 10:06:29 JST</div>
+    <div class="pill">次回目安：10:36 JST</div>
     <div class="pill">画面自動更新：5分</div>
   </div>
 </header>
@@ -151,7 +151,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
       <div class="metric hot"><strong>速報必要</strong><span>0</span></div>
       <div class="metric"><strong>負けそう</strong><span>0</span></div>
       <div class="metric"><strong>検出試合</strong><span>123</span></div>
-      <div class="metric"><strong>重要校</strong><span>4</span></div>
+      <div class="metric"><strong>表示重要校</strong><span>0</span></div>
     </div>
   </section>
 
@@ -201,46 +201,11 @@ td:nth-child(5){white-space:nowrap;text-align:right}
   <section class="details">
     <details open>
       <summary>速報センター・重要校一覧</summary>
-      <p class="notice">北から順に一覧表示します。北から順に一覧表示します。必要列だけに絞り、スコア確認を優先します。</p>
+      <p class="notice">北から順に一覧表示します。速報必要・負けそう・今回更新があった重要校だけを北から順に表示します。古いスコア残りは除外します。</p>
       <div class="table-wrap">
         <table>
           <tr><th>地区</th><th>重要校</th><th>スコア</th><th>状況</th><th>確認</th></tr>
-          
-<tr>
-  <td>愛知</td>
-  <td><strong>旭丘</strong><div class="subline">★☆☆☆☆ ／ <span class="priority p-watch">監視｜重要校リード</span></div></td>
-  <td><strong>9－2</strong> 江南</td>
-  <td><span class="badge is-ok">リード</span><div class="subline"> </div></td>
-  <td><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
-</tr>
-
-
-<tr>
-  <td>愛知</td>
-  <td><strong>至学館</strong><div class="subline">★☆☆☆☆ ／ <span class="priority p-watch">監視｜重要校リード</span></div></td>
-  <td><strong>27－0</strong> 猿投農林</td>
-  <td><span class="badge is-ok">リード</span><div class="subline"> </div></td>
-  <td><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/aichi/score.html" target="_blank" rel="noopener">速報</a></td>
-</tr>
-
-
-<tr>
-  <td>沖縄</td>
-  <td><strong>八重山商工</strong><div class="subline">★☆☆☆☆ ／ <span class="priority p-warning">注意｜重要校ビハインド</span></div></td>
-  <td><strong>3－4</strong> 那覇商</td>
-  <td><span class="badge is-warning">ビハインド</span><div class="subline"> </div></td>
-  <td><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
-</tr>
-
-
-<tr>
-  <td>沖縄</td>
-  <td><strong>興南</strong><div class="subline">★☆☆☆☆ ／ <span class="priority p-warning">監視｜接戦・継続確認</span></div></td>
-  <td><strong>5－3</strong> 宜野湾</td>
-  <td><span class="badge is-ok">リード</span><div class="subline"> </div></td>
-  <td><a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">速報</a></td>
-</tr>
-
+          <tr><td colspan="5">現在、当日表示対象の重要校はありません</td></tr>
         </table>
       </div>
     </details>
