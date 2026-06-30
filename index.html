@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
-<title>高校野球AI Desk Ver5.4.4 Compact</title>
+<title>高校野球AI Desk Ver6.0 Stable</title>
 <style>
 :root{
   --bg:#eef4fb;
   --ink:#07111f;
   --muted:#64748b;
-  --panel:rgba(255,255,255,.82);
+  --panel:rgba(255,255,255,.86);
   --line:rgba(15,23,42,.10);
   --shadow:0 12px 34px rgba(15,23,42,.10);
   --blue:#2563eb;
@@ -20,10 +20,10 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(120deg,#eaf1ff 0%,#eef7ff 45%,#e7fbff 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
-header{background:#111827;color:white;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-h1{margin:0;font-size:25px;font-weight:950;letter-spacing:-.04em}
+header{background:#111827;color:white;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+h1{margin:0;font-size:24px;font-weight:950;letter-spacing:-.04em}
 .version{font-size:12px;color:#93c5fd;margin-left:6px}
-.subtitle{font-size:13px;color:#cbd5e1;margin-top:5px}
+.subtitle{font-size:13px;color:#cbd5e1;margin-top:4px}
 .live{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900}
 .live-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:6px}
@@ -57,8 +57,8 @@ main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}
 .grid{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;align-items:stretch}
 .hero-card,.panel{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:20px;padding:12px 14px;box-shadow:var(--shadow);min-height:220px;height:220px;overflow:hidden}
 .hero-card{border-left:10px solid var(--blue)}
-.hero-card.is-warning{border-left-color:#f59e0b}.hero-card.is-danger{border-left-color:#e11d48}.hero-card.is-ok{border-left-color:#22c55e}
-.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950}
+.hero-card.warn{border-left-color:#f59e0b}.hero-card.danger{border-left-color:#e11d48}.hero-card.ok{border-left-color:#22c55e}.hero-card.neutral{border-left-color:#60a5fa}
+.hero-kicker{display:inline-block;border:1px solid #fed7aa;border-radius:999px;padding:5px 10px;background:#fff7ed;color:#9a3412;font-size:12px;font-weight:950;line-height:1.1}
 .hero-school{font-size:clamp(32px,2.8vw,48px);font-weight:950;letter-spacing:-.07em;margin-top:6px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hero-score{display:flex;align-items:baseline;gap:8px;margin-top:3px;line-height:1}
 .hero-score span{font-size:clamp(34px,3.3vw,52px);font-weight:950;line-height:1}
@@ -66,10 +66,12 @@ main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}
 .hero-score em{font-style:normal;font-size:clamp(18px,1.6vw,28px);font-weight:950;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hero-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:850;margin-top:4px;line-height:1.15}
 .hero-reason{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-top:5px;color:#334155;line-height:1.3}
-.hero-reason strong{display:block;color:#111827;font-size:13px;line-height:1.25}.hero-reason span{font-size:12px;line-height:1.35}
+.hero-reason strong{display:block;color:#111827;font-size:13px;line-height:1.25}
+.hero-reason span{font-size:12px;line-height:1.35}
+.hero-actions{margin-top:5px}
+.hero-card.neutral .hero-school{font-size:clamp(30px,2.7vw,44px);margin-top:22px;white-space:normal}
 .btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:950}
 .btn.disabled{background:#94a3b8}
-.hero-actions{margin-top:5px}
 .panel h2{margin:0 0 7px;font-size:20px}
 .alert-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
 .alert-stat{border-radius:12px;padding:6px 9px;border:1px solid var(--line);background:#f8fafc}
@@ -77,14 +79,14 @@ main{max-width:1680px;margin:0 auto;padding:10px 18px 18px}
 .alert-stat.danger{background:#fff1f2;color:#be123c}.alert-stat.warn{background:#fffbeb;color:#92400e}.alert-stat.info{background:#eff6ff;color:#1d4ed8}
 .alert-list{list-style:none;margin:0;padding:0;display:grid;gap:7px;max-height:140px;overflow:auto}
 .alert-card{background:#f8fafc;border-left:7px solid #94a3b8;border-radius:14px;padding:8px 11px}
-.alert-card.is-warning{border-left-color:#f59e0b;background:#fffbeb}.alert-card.is-danger{border-left-color:#e11d48;background:#fff1f2}
+.alert-card.warn{border-left-color:#f59e0b;background:#fffbeb}.alert-card.danger{border-left-color:#e11d48;background:#fff1f2}
 .alert-label{font-size:12px;font-weight:950;color:#475569}.alert-title{font-size:14px;font-weight:900;margin:3px 0 5px}.alert-note{font-size:12px;color:var(--muted)}
-.error-mini-list{margin:4px 0 0;padding-left:18px;line-height:1.45}
-.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:8px}
-details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:405px;overflow:hidden}
+.mini-list{margin:4px 0 0;padding-left:18px;line-height:1.45}
+.details{display:grid;grid-template-columns:minmax(560px,1fr) minmax(520px,.92fr);gap:10px;margin-top:10px}
+details{background:var(--panel);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);height:430px;overflow:hidden}
 summary{font-size:18px;font-weight:950;cursor:pointer}
 .notice{font-size:13px;color:var(--muted)}
-.table-wrap{max-height:260px;overflow:auto;margin-top:10px}
+.table-wrap{max-height:360px;overflow:auto;margin-top:10px}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{position:sticky;top:0;background:#f8fafc;color:#475569;text-align:left;font-size:12px;padding:9px;border-bottom:1px solid var(--line)}
 td{padding:9px;border-bottom:1px solid var(--line);vertical-align:middle}
@@ -93,9 +95,9 @@ td:nth-child(1){white-space:nowrap}
 td:nth-child(3){white-space:nowrap}
 td:nth-child(5){white-space:nowrap;text-align:right}
 .badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}
-.badge.is-warning{background:#fef3c7;color:#92400e}.badge.is-danger{background:#ffe4e6;color:#be123c}.badge.is-ok{background:#dcfce7;color:#166534}
+.badge.warn{background:#fef3c7;color:#92400e}.badge.danger{background:#ffe4e6;color:#be123c}.badge.ok{background:#dcfce7;color:#166534}
 .priority{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:950;white-space:nowrap}
-.p-danger{background:#ffe4e6;color:#be123c}.p-warning{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}
+.p-danger{background:#ffe4e6;color:#be123c}.p-warn{background:#fef3c7;color:#92400e}.p-watch{background:#dbeafe;color:#1d4ed8}.p-neutral{background:#e5e7eb;color:#374151}
 .defeat-list{max-height:355px;overflow:auto;margin-top:10px;display:grid;gap:10px}
 .defeat-card{background:#fff;border:1px solid var(--line);border-left:7px solid var(--red);border-radius:16px;padding:12px}
 .defeat-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
@@ -109,37 +111,20 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 .defeat-actions{margin-top:8px}
 .empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850}
 .footer{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
-@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:420px}.hero-card,.panel{min-height:auto}}
-@media(min-width:1181px){
-  .grid > .hero-card,
-  .grid > .panel{
-    height:230px;
-    min-height:230px;
-  }
-  .hero-card.is-neutral .hero-school{
-    font-size:clamp(34px,3vw,52px);
-    margin-top:26px;
-  }
-  .hero-card.is-neutral .hero-reason{
-    max-width:760px;
-  }
-  .table-wrap{
-    max-height:320px;
-  }
-}
+@media(max-width:1180px){header{display:block}.live{justify-content:flex-start;margin-top:10px}.top,.grid,.details{grid-template-columns:1fr}.status{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}details{height:auto;max-height:420px}.hero-card,.panel{height:auto;min-height:auto}}
 </style>
 </head>
-<body data-generated-at="2026-06-30T13:09:21.282789+09:00">
+<body data-generated-at="2026-06-30T16:49:13.294346+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver5.4.4 Compact</span></h1>
-    <div class="subtitle">運用版候補 ／ 重要校限定明記 ／ 4ブロック構成</div>
+    <h1>高校野球AI Desk <span class="version">Ver6.0 Stable</span></h1>
+    <div class="subtitle">運用版 ／ 4ブロック構成 ／ 重要校限定 ／ 内部指標は原稿非使用</div>
   </div>
   <div class="live">
     <div class="pill" id="freshness-pill"><span class="live-dot"></span><span id="freshness-label">自動巡回中</span></div>
-    <div class="pill phase-before">🟦 試合開始前</div>
-    <div class="pill">最終：2026-06-30 13:09:21 JST</div>
-    <div class="pill">次回目安：13:39 JST</div>
+    <div class="pill phase-done">🟩 本日対象なし</div>
+    <div class="pill">最終：2026-06-30 16:49:13 JST</div>
+    <div class="pill">次回目安：17:19 JST</div>
     <div class="pill">画面自動更新：5分</div>
     <div class="pill important-only">重要校限定</div>
   </div>
@@ -152,7 +137,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
         <div class="status-label">デスク判断バー</div>
         <div class="status-main">通常</div>
       </div>
-      <div class="status-note">重要校・注目カードを確認する時間帯です。古いスコア残りはメイン表示しません。<br>監視・通知は重要校限定です。メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。</div>
+      <div class="status-note">現在、メイン表示すべき当日対象はありません。<br>監視・通知は重要校限定です。メールは5回ビハインド・敗退のみ即時通知。試合開始メールは送信しません。</div>
     </div>
     <div class="metrics">
       <div class="metric hot"><strong>速報必要</strong><span>0</span></div>
@@ -171,19 +156,19 @@ td:nth-child(5){white-space:nowrap;text-align:right}
     </div>
     <div class="legend">
       <span><b class="dot before"></b>試合開始前 0</span>
-      <span><b class="dot active"></b>確認対象 123</span>
+      <span><b class="dot active"></b>確認対象 0</span>
       <span><b class="dot finished"></b>本日終了 0</span>
     </div>
   </section>
 
   <section class="grid">
     
-<section class="hero-card is-neutral">
-  <div class="hero-kicker">🟦 試合開始前</div>
+<section class="hero-card neutral">
+  <div class="hero-kicker">🟩 本日対象なし</div>
   <div class="hero-school">現在の最優先なし</div>
   <div class="hero-reason">
     <strong>メイン表示なし</strong>
-    <span>速報必要・負けそう・今回更新があった重要校だけをメイン表示します。八重山商工のような古いスコア残りは除外しています。</span>
+    <span>速報必要・負けそう・今回更新があった重要校だけを表示します。古いスコア残りは除外しています。</span>
   </div>
 </section>
 
@@ -196,7 +181,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
         <div class="alert-stat info"><strong>通常</strong><span>状態</span></div>
       </div>
       <ul class="alert-list">
-<li class="alert-card is-neutral">
+<li class="alert-card neutral">
   <div class="alert-label">通常</div>
   <div class="alert-title">現在、即時対応アラートはありません</div>
   <div class="alert-note">5回終了ビハインド、敗退が出た場合にここへ表示します。試合開始メールは送信しません。</div>
@@ -208,7 +193,7 @@ td:nth-child(5){white-space:nowrap;text-align:right}
   <section class="details">
     <details open>
       <summary>速報センター・重要校一覧（当日対象）</summary>
-      <p class="notice">北から順に一覧表示します。速報必要・負けそう・今回更新があった重要校だけを北から順に表示します。古いスコア残りは除外します。</p>
+      <p class="notice">速報必要・負けそう・今回更新があった重要校だけを北から順に表示します。古いスコア残りは除外します。</p>
       <div class="table-wrap">
         <table>
           <tr><th>地区</th><th>重要校</th><th>スコア</th><th>状況</th><th>確認</th></tr>
@@ -219,20 +204,14 @@ td:nth-child(5){white-space:nowrap;text-align:right}
 
     <details open>
       <summary>重要校敗戦一覧・AI戦評（当日対象）</summary>
-      <p class="notice">敗戦候補だけを表示します。AI戦評は事実ベースの短文ドラフトです。必ず速報ページで確認してください。</p>
+      <p class="notice">AI戦評は事実ベースの短文ドラフトです。内部指標は原稿に出しません。必ず速報ページで確認してください。</p>
       <button class="btn" onclick="navigator.clipboard && navigator.clipboard.writeText(document.getElementById('defeat-copy').innerText)">敗戦一覧をコピー</button>
-      <div class="defeat-list">
-        
-<div class="empty-card">
-  現在、重要校の敗戦候補はありません。
-</div>
-
-      </div>
+      <div class="defeat-list"><div class="empty-card">現在、重要校の敗戦候補はありません。</div></div>
       <pre id="defeat-copy" style="display:none">現在、重要校の敗戦候補はありません。</pre>
     </details>
   </section>
 
-  <div class="footer">このDashboardは30分ごとの巡回結果から生成されます。表示・通知は重要校限定、上部の数字は表示対象ベースです。時刻は日本時間（JST）です。</div>
+  <div class="footer">このDashboardは30分ごとの巡回結果から生成されます。表示・通知は重要校限定、上部の数字は表示対象ベースです。甲子園出場回数などは内部指標で、原稿には出しません。時刻は日本時間（JST）です。</div>
 </main>
 
 <script>
@@ -247,8 +226,8 @@ td:nth-child(5){white-space:nowrap;text-align:right}
     const gen = new Date(generated);
     const now = new Date();
     const diffMin = Math.floor((now - gen) / 60000);
-
     pill.classList.remove("fresh-warn", "fresh-danger");
+
     if(diffMin >= 120){
       pill.classList.add("fresh-danger");
       label.textContent = "要確認：" + diffMin + "分更新なし";
@@ -264,6 +243,5 @@ td:nth-child(5){white-space:nowrap;text-align:right}
   setInterval(updateFreshness, 60000);
 })();
 </script>
-
 </body>
 </html>
