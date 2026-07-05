@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver7 Desk Layout</title>
+<title>高校野球AI Desk Ver7 Desk Layout v2</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -27,22 +27,22 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 .hidden{display:none!important}@media(max-width:1280px){header{height:auto;grid-template-columns:1fr}.metrics{height:auto}.pills{justify-content:flex-start}.layout,.list-top{grid-template-columns:1fr}}@media(max-width:760px){.list-head{display:none}.game-row{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
-<body data-generated-at="2026-07-05T09:38:09.395555+09:00">
+<body data-generated-at="2026-07-05T13:19:57.105780+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver7 Desk Layout</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver7 Desk Layout v2</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
     <div class="metric hot"><strong>速報必要</strong><span id="metric-defeat">0</span></div>
     <div class="metric"><strong>負けそう</strong><span id="metric-behind">0</span></div>
-    <div class="metric"><strong>重要校</strong><span id="metric-total">1</span></div>
-    <div class="metric"><strong>終了</strong><span id="metric-finished">0</span></div>
+    <div class="metric"><strong>重要校</strong><span id="metric-total">5</span></div>
+    <div class="metric"><strong>終了</strong><span id="metric-finished">2</span></div>
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 09:38</div>
-    <div class="pill">次回 09:53</div>
+    <div class="pill">最終 13:19</div>
+    <div class="pill">次回 13:34</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
@@ -53,7 +53,7 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
     <div class="list-top">
       <div>
         <h2>本日の重要校一覧</h2>
-        <p class="note">勝敗にかかわらず、今日の重要校試合を残します。リンク以外の行クリックで記事に追加・解除します。</p>
+        <p class="note">勝敗にかかわらず、今日の重要校試合を残します。試合終了・試合前は記事に追加できます。試合中は状況確認のみです。</p>
         <div class="tabs">
           <button type="button" class="tab active" data-phase-filter="all">すべて</button>
           <button type="button" class="tab" data-phase-filter="before">開始前</button>
@@ -75,32 +75,156 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 
     <div id="game-list">
 <article class="game-row ok"
-  data-row-id="京都:１回戦:乙訓___京都農芸"
-  data-region="近畿"
-  data-pref="京都"
+  data-row-id="東東京:１回戦:修徳___渋谷教育渋谷"
+  data-region="関東"
+  data-pref="東東京"
   data-phase="active"
   data-alert="0"
   data-academic="0"
-  data-school="乙訓"
-  data-article="乙訓の試合状況を確認する。スコアは1－0。">
+  data-school="修徳"
+  data-article="修徳の試合状況を確認する。スコアは9－0。">
   <div class="time-cell">—</div>
   <div class="school-cell">
-    <div class="meta">京都　１回戦</div>
-    <div class="school-name">乙訓</div>
+    <div class="meta">東東京　１回戦</div>
+    <div class="school-name">修徳</div>
   </div>
   <div class="score-cell">
-    <div class="score-main">1－0</div>
-    <div class="opponent">京都農芸</div>
+    <div class="score-main">9－0</div>
+    <div class="opponent">渋谷教育渋谷</div>
   </div>
   <div class="status-cell">
     <span class="status ok">リード</span>
     <div class="meta">1回</div>
   </div>
   <div class="remarks-cell">
-    <span class="mini-badge feature">1点差</span><span class="mini-badge feature">ロースコア</span>
+    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge feature">大差</span>
+  </div>
+  <div class="link-cell">
+    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/etokyo/score.html" target="_blank" rel="noopener">リンク</a>
+  </div>
+</article>
+
+
+<article class="game-row neutral"
+  data-row-id="長野:２回戦:上田西___松本美須々ケ丘"
+  data-region="北信越"
+  data-pref="長野"
+  data-phase="active"
+  data-alert="0"
+  data-academic="0"
+  data-school="上田西"
+  data-article="上田西の試合状況を確認する。スコアは0－0。">
+  <div class="time-cell">—</div>
+  <div class="school-cell">
+    <div class="meta">長野　２回戦</div>
+    <div class="school-name">上田西</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-main">0－0</div>
+    <div class="opponent">松本美須々ケ丘</div>
+  </div>
+  <div class="status-cell">
+    <span class="status neutral">試合中</span>
+    <div class="meta">2回</div>
+  </div>
+  <div class="remarks-cell">
+    <span class="mini-badge feature">接戦</span>
+  </div>
+  <div class="link-cell">
+    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/nagano/score.html" target="_blank" rel="noopener">リンク</a>
+  </div>
+</article>
+
+
+<article class="game-row ok"
+  data-row-id="京都:１回戦:乙訓___京都農芸"
+  data-region="近畿"
+  data-pref="京都"
+  data-phase="finished"
+  data-alert="0"
+  data-academic="0"
+  data-school="乙訓"
+  data-article="乙訓は京都農芸に7－0で勝利した。本日の重要校の結果として確認する。">
+  <div class="time-cell">—</div>
+  <div class="school-cell">
+    <div class="meta">京都　１回戦</div>
+    <div class="school-name">乙訓</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-main">7－0</div>
+    <div class="opponent">京都農芸</div>
+  </div>
+  <div class="status-cell">
+    <span class="status ok">勝利・終了</span>
+    <div class="meta">試合終了</div>
+  </div>
+  <div class="remarks-cell">
+    <span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kyoto/score.html" target="_blank" rel="noopener">リンク</a>
+  </div>
+</article>
+
+
+<article class="game-row ok"
+  data-row-id="兵庫:１回戦:園田学園___神港学園"
+  data-region="近畿"
+  data-pref="兵庫"
+  data-phase="finished"
+  data-alert="0"
+  data-academic="0"
+  data-school="神港学園"
+  data-article="神港学園は園田学園に4－0で勝利した。本日の重要校の結果として確認する。">
+  <div class="time-cell">—</div>
+  <div class="school-cell">
+    <div class="meta">兵庫　１回戦</div>
+    <div class="school-name">神港学園</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-main">4－0</div>
+    <div class="opponent">園田学園</div>
+  </div>
+  <div class="status-cell">
+    <span class="status ok">勝利・終了</span>
+    <div class="meta">試合終了</div>
+  </div>
+  <div class="remarks-cell">
+    <span class="mini-badge feature">ロースコア</span>
+  </div>
+  <div class="link-cell">
+    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hyogo/score.html" target="_blank" rel="noopener">リンク</a>
+  </div>
+</article>
+
+
+<article class="game-row neutral"
+  data-row-id="沖縄:３回戦:知念___興南"
+  data-region="九州・沖縄"
+  data-pref="沖縄"
+  data-phase="active"
+  data-alert="0"
+  data-academic="0"
+  data-school="興南"
+  data-article="興南の試合状況を確認する。スコアは0－0。">
+  <div class="time-cell">—</div>
+  <div class="school-cell">
+    <div class="meta">沖縄　３回戦</div>
+    <div class="school-name">興南</div>
+  </div>
+  <div class="score-cell">
+    <div class="score-main">0－0</div>
+    <div class="opponent">知念</div>
+  </div>
+  <div class="status-cell">
+    <span class="status neutral">試合中</span>
+    <div class="meta">3回</div>
+  </div>
+  <div class="remarks-cell">
+    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">夏優勝</span><span class="mini-badge feature">接戦</span>
+  </div>
+  <div class="link-cell">
+    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/okinawa/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
 </div>
@@ -190,6 +314,16 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 
       rows.forEach(r => r.classList.remove("current"));
       row.classList.add("current");
+
+      const phase = row.getAttribute("data-phase") || "";
+
+      // 試合中は状況確認だけにする。
+      // 記事は発生させない。試合前と試合終了は記事候補として追加できる。
+      if(phase === "active"){
+        updateChips();
+        updateCount();
+        return;
+      }
 
       if(row.classList.contains("added")){
         row.classList.remove("added");
