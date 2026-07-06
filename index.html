@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver9 Scoreboard Fix3</title>
+<title>高校野球AI Desk Ver9 Scoreboard Fix4</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -19,7 +19,7 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 .school-name{font-size:34px;font-weight:1000;letter-spacing:-.06em;line-height:1.05}.meta{font-size:12px;color:#475569;font-weight:850;margin-top:1px}.vs-cell{width:36px;height:36px;border-radius:999px;background:#e5e7eb;color:#111827;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:950}.opponent-name{font-size:24px;font-weight:850;letter-spacing:-.04em;line-height:1.15;color:#111827}.score-main{font-size:31px;font-weight:950;line-height:1;white-space:nowrap}.score-sub{display:flex;align-items:center;gap:8px;margin-top:7px;white-space:nowrap}.inning-text{font-size:13px;color:#111827;font-weight:950}
 .status{display:inline-block;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.status.neutral{background:#e5e7eb;color:#374151}.status.warn{background:#ffedd5;color:#9a3412}.status.danger{background:#ffe4e6;color:#be123c}.status.ok{background:#dcfce7;color:#166534}
 .remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.topic{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
-.link-cell{display:flex;gap:6px;align-items:center}.btn,.article-btn{display:inline-block;width:auto;flex:1;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 8px;font-weight:950;font-size:12px;text-decoration:none;cursor:pointer}.article-btn{background:#eff6ff}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
+.link-cell{display:flex;gap:6px;align-items:center}.btn,.article-btn{display:inline-block;width:auto;flex:1;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 8px;font-weight:950;font-size:12px;text-decoration:none;cursor:pointer}.article-btn{background:#2563eb;border-color:#2563eb;color:#fff}.article-btn.is-added{background:#e2e8f0;border-color:#cbd5e1;color:#334155}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
 .right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
 .detail-panel{border:1px solid var(--line);border-radius:14px;background:#f8fafc;padding:10px 12px;margin:8px 0 10px}.detail-title{font-size:16px;font-weight:950;margin-bottom:4px}.detail-sub{font-size:12px;color:var(--muted);font-weight:850;margin-bottom:8px}.scoreboard-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden}.scoreboard-table th,.scoreboard-table td{border-bottom:1px solid #e2e8f0;padding:5px 6px;text-align:center;font-weight:850}.scoreboard-table th:first-child,.scoreboard-table td:first-child{text-align:left;min-width:76px}.scoreboard-table th:last-child,.scoreboard-table td:last-child{font-weight:950;background:#f1f5f9}.scoreboard-empty{font-size:13px;color:#64748b;font-weight:850;background:#fff;border:1px dashed #cbd5e1;border-radius:10px;padding:10px}.editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
 .article-editor{width:100%;min-height:300px;max-height:520px;overflow:auto;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font-size:15px;line-height:1.75;background:#fff}.article-editor p{margin:0 0 1em}.article-editor:empty:before{content:'左の一覧から試合を選ぶと、ここに1試合1段落で記事が追加されます。';color:#94a3b8}
@@ -68,22 +68,22 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 }
 </style>
 </head>
-<body data-generated-at="2026-07-06T23:51:57.101292+09:00">
+<body data-generated-at="2026-07-07T01:16:44.073233+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver9 Scoreboard Fix3</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver9 Scoreboard Fix4</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
     <div class="metric hot"><strong>速報必要</strong><span id="metric-defeat">0</span></div>
     <div class="metric"><strong>負けそう</strong><span id="metric-behind">0</span></div>
-    <div class="metric"><strong>重要校</strong><span id="metric-total">5</span></div>
-    <div class="metric"><strong>終了</strong><span id="metric-finished">5</span></div>
+    <div class="metric"><strong>重要校</strong><span id="metric-total">0</span></div>
+    <div class="metric"><strong>終了</strong><span id="metric-finished">0</span></div>
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 23:51</div>
-    <div class="pill">次回 00:06</div>
+    <div class="pill">最終 01:16</div>
+    <div class="pill">次回 01:31</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
@@ -115,166 +115,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
       <div>重要校・大会・回戦</div><div></div><div>相手</div><div>スコア</div><div>備考</div><div>リンク</div>
     </div>
 
-    <div id="game-list">
-<article class="game-row ok"
-  data-row-id="山梨:１回戦:山梨学院___韮崎"
-  data-region="関東"
-  data-pref="山梨"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="山梨学院"
-  data-scoreboard="{&quot;team_a&quot;: &quot;韮崎&quot;, &quot;team_b&quot;: &quot;山梨学院&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;13&quot;, &quot;innings_a&quot;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;], &quot;innings_b&quot;: [&quot;6&quot;, &quot;0&quot;, &quot;7&quot;, &quot;0&quot;, &quot;None&quot;], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
-  data-article="山梨学院は韮崎に13－0で勝利した。">
-  <div class="school-cell">
-    <div class="meta">山梨　１回戦</div>
-    <div class="school-name">山梨学院</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">韮崎</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">13－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
-  </div>
-  <div class="link-cell">
-    <button class="article-btn" type="button">記事化</button>
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamanashi/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
-  data-row-id="広島:１回戦:呉三津田___瀬戸内"
-  data-region="中国"
-  data-pref="広島"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="瀬戸内"
-  data-scoreboard="{&quot;team_a&quot;: &quot;呉三津田&quot;, &quot;team_b&quot;: &quot;瀬戸内&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;10&quot;, &quot;innings_a&quot;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;], &quot;innings_b&quot;: [&quot;0&quot;, &quot;6&quot;, &quot;2&quot;, &quot;0&quot;, &quot;0&quot;, &quot;2&quot;], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
-  data-article="瀬戸内は呉三津田に10－0で勝利した。">
-  <div class="school-cell">
-    <div class="meta">広島　１回戦</div>
-    <div class="school-name">瀬戸内</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">呉三津田</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">10－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge feature">大差</span>
-  </div>
-  <div class="link-cell">
-    <button class="article-btn" type="button">記事化</button>
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hiroshima/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
-  data-row-id="福岡:１回戦:有明高専___西日本短大付"
-  data-region="九州・沖縄"
-  data-pref="福岡"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="西日本短大付"
-  data-scoreboard="{&quot;team_a&quot;: &quot;有明高専&quot;, &quot;team_b&quot;: &quot;西日本短大付&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;12&quot;, &quot;innings_a&quot;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;], &quot;innings_b&quot;: [&quot;10&quot;, &quot;0&quot;, &quot;2&quot;, &quot;0&quot;, &quot;None&quot;], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
-  data-article="西日本短大付は有明高専に12－0で勝利した。">
-  <div class="school-cell">
-    <div class="meta">福岡　１回戦</div>
-    <div class="school-name">西日本短大付</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">有明高専</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">12－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">夏優勝</span><span class="mini-badge feature">大差</span>
-  </div>
-  <div class="link-cell">
-    <button class="article-btn" type="button">記事化</button>
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukuoka/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
-  data-row-id="宮崎:１回戦:延岡学園___飯野"
-  data-region="九州・沖縄"
-  data-pref="宮崎"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="延岡学園"
-  data-scoreboard="{&quot;team_a&quot;: &quot;延岡学園&quot;, &quot;team_b&quot;: &quot;飯野&quot;, &quot;score_a&quot;: &quot;27&quot;, &quot;score_b&quot;: &quot;0&quot;, &quot;innings_a&quot;: [&quot;15&quot;, &quot;6&quot;, &quot;3&quot;, &quot;3&quot;, &quot;0&quot;], &quot;innings_b&quot;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
-  data-article="延岡学園は飯野に27－0で勝利した。">
-  <div class="school-cell">
-    <div class="meta">宮崎　１回戦</div>
-    <div class="school-name">延岡学園</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">飯野</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">27－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge feature">大差</span><span class="mini-badge feature">乱打戦</span>
-  </div>
-  <div class="link-cell">
-    <button class="article-btn" type="button">記事化</button>
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyazaki/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
-  data-row-id="鹿児島:１回戦:出水商___鹿児島実"
-  data-region="九州・沖縄"
-  data-pref="鹿児島"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="鹿児島実"
-  data-scoreboard="{&quot;team_a&quot;: &quot;出水商&quot;, &quot;team_b&quot;: &quot;鹿児島実&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;7&quot;, &quot;innings_a&quot;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;], &quot;innings_b&quot;: [&quot;1&quot;, &quot;0&quot;, &quot;1&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;5&quot;], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
-  data-article="鹿児島実は出水商に7－0で勝利した。">
-  <div class="school-cell">
-    <div class="meta">鹿児島　１回戦</div>
-    <div class="school-name">鹿児島実</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">出水商</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">7－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
-  </div>
-  <div class="link-cell">
-    <button class="article-btn" type="button">記事化</button>
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagoshima/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-</div>
+    <div id="game-list"><div class="empty-card">現在、本日の重要校試合はありません。</div></div>
   </div>
 
   <div class="right">
@@ -441,7 +282,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
       const phase = row.getAttribute("data-phase") || "";
       if(phase === "active"){
         btn.textContent = "試合中";
-        setTimeout(() => btn.textContent = row.classList.contains("added") ? "記事解除" : "記事化", 1200);
+        setTimeout(() => btn.textContent = row.classList.contains("added") ? "解除" : "記事化", 1200);
         updateChips();
         updateCount();
         return;
@@ -451,10 +292,12 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
         row.classList.remove("added");
         removeArticle(row);
         btn.textContent = "記事化";
+        btn.classList.remove("is-added");
       }else{
         row.classList.add("added");
         addArticle(row);
-        btn.textContent = "記事解除";
+        btn.textContent = "解除";
+        btn.classList.add("is-added");
       }
 
       updateChips();
@@ -468,7 +311,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     clearBtn.addEventListener("click", () => {
       if(editor) editor.innerHTML = "";
       rows.forEach(row => row.classList.remove("added", "current"));
-      document.querySelectorAll(".article-btn").forEach(btn => btn.textContent = "記事化");
+      document.querySelectorAll(".article-btn").forEach(btn => { btn.textContent = "記事化"; btn.classList.remove("is-added"); });
       updateChips();
       updateCount();
     });
