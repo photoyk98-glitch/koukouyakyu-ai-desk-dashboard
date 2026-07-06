@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver9 Reliability</title>
+<title>高校野球AI Desk Ver9 Important Master</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -18,7 +18,7 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 .list-head,.game-row{display:grid;grid-template-columns:1.15fr 46px 1.05fr 150px 180px 82px;gap:10px;align-items:center}.list-head{background:#f8fafc;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:950;color:#334155}.game-row{background:#fff;border:1px solid var(--line);border-left:8px solid #cbd5e1;border-radius:14px;padding:10px 12px;margin-top:7px;min-height:82px;cursor:pointer}.game-row:hover{background:#f8fbff}.game-row.danger{border-left-color:var(--red);background:#fff7f8}.game-row.warn{border-left-color:var(--orange);background:#fffaf3}.game-row.ok{border-left-color:var(--green)}.game-row.added{border-left-color:var(--blue);border-left-width:12px}.game-row.current{box-shadow:0 0 0 3px var(--blue);background:#dbeafe!important;border-color:var(--blue)}.game-row.current .school-name{color:#1d4ed8;font-weight:1000}
 .school-name{font-size:34px;font-weight:1000;letter-spacing:-.06em;line-height:1.05}.meta{font-size:12px;color:#475569;font-weight:850;margin-top:1px}.vs-cell{width:36px;height:36px;border-radius:999px;background:#e5e7eb;color:#111827;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:950}.opponent-name{font-size:24px;font-weight:850;letter-spacing:-.04em;line-height:1.15;color:#111827}.score-main{font-size:31px;font-weight:950;line-height:1;white-space:nowrap}.score-sub{display:flex;align-items:center;gap:8px;margin-top:7px;white-space:nowrap}.inning-text{font-size:13px;color:#111827;font-weight:950}
 .status{display:inline-block;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.status.neutral{background:#e5e7eb;color:#374151}.status.warn{background:#ffedd5;color:#9a3412}.status.danger{background:#ffe4e6;color:#be123c}.status.ok{background:#dcfce7;color:#166534}
-.remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
+.remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.topic{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
 .btn{display:inline-block;width:100%;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 10px;font-weight:950;font-size:13px;text-decoration:none}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
 .right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
 .editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
@@ -68,10 +68,10 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 }
 </style>
 </head>
-<body data-generated-at="2026-07-06T17:36:11.136123+09:00">
+<body data-generated-at="2026-07-06T18:37:53.108060+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver9 Reliability</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver9 Important Master</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
@@ -82,8 +82,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 17:36</div>
-    <div class="pill">次回 17:51</div>
+    <div class="pill">最終 18:37</div>
+    <div class="pill">次回 18:52</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
