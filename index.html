@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver9 Scoreboard</title>
+<title>高校野球AI Desk Ver9 Scoreboard Fix2</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -15,11 +15,11 @@ h1{margin:0;font-size:24px;letter-spacing:-.05em;line-height:1}.version{font-siz
 main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-template-columns:minmax(980px,1.65fr) minmax(390px,.55fr);gap:10px;align-items:start}.panel{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.08);padding:12px}
 .focus-section{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.08);padding:12px;margin-bottom:10px}.focus-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.focus-title{font-size:17px;font-weight:950}.focus-link{font-size:13px;color:var(--blue);font-weight:950;text-decoration:none}.focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.focus-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 10px;min-height:62px}.focus-meta{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;color:#334155;white-space:nowrap}.time-badge{background:#fee2e2;color:#e11d48;border-radius:999px;padding:2px 7px;font-weight:950}.focus-label{border-radius:999px;padding:2px 7px;font-size:11px;font-weight:950}.focus-strong,.focus-academic{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe}.focus-tradition{background:#ecfdf5;color:#047857;border:1px solid #bbf7d0}.focus-good{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}.focus-neutral{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}.focus-match{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;gap:8px;margin-top:7px;font-size:16px;font-weight:950}.focus-match span{text-align:center;background:#e5e7eb;border-radius:999px;padding:3px 0;font-size:11px}.opponent-focus{text-align:right}.list-top{display:grid;grid-template-columns:1fr 430px;gap:12px;align-items:start;margin-bottom:8px}h2{font-size:24px;margin:0 0 2px;letter-spacing:-.04em}.note{margin:0;color:var(--muted);font-size:13px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.tab{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:950;cursor:pointer}.tab.active{background:#0f172a;color:#fff}
 .filter-title{font-size:14px;font-weight:950;margin-bottom:6px}.regions{display:flex;gap:8px 12px;flex-wrap:wrap}.region-check{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:900}.region-check input{width:14px;height:14px}
-.list-head,.game-row{display:grid;grid-template-columns:1.15fr 46px 1.05fr 150px 180px 82px;gap:10px;align-items:center}.list-head{background:#f8fafc;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:950;color:#334155}.game-row{background:#fff;border:1px solid var(--line);border-left:8px solid #cbd5e1;border-radius:14px;padding:10px 12px;margin-top:7px;min-height:82px;cursor:pointer}.game-row:hover{background:#f8fbff}.game-row.danger{border-left-color:var(--red);background:#fff7f8}.game-row.warn{border-left-color:var(--orange);background:#fffaf3}.game-row.ok{border-left-color:var(--green)}.game-row.added{border-left-color:var(--blue);border-left-width:12px}.game-row.current{box-shadow:0 0 0 3px var(--blue);background:#dbeafe!important;border-color:var(--blue)}.game-row.current .school-name{color:#1d4ed8;font-weight:1000}
+.list-head,.game-row{display:grid;grid-template-columns:1.15fr 46px 1.05fr 150px 170px 122px;gap:10px;align-items:center}.list-head{background:#f8fafc;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:950;color:#334155}.game-row{background:#fff;border:1px solid var(--line);border-left:8px solid #cbd5e1;border-radius:14px;padding:10px 12px;margin-top:7px;min-height:82px;cursor:pointer}.game-row:hover{background:#f8fbff}.game-row.danger{border-left-color:var(--red);background:#fff7f8}.game-row.warn{border-left-color:var(--orange);background:#fffaf3}.game-row.ok{border-left-color:var(--green)}.game-row.added{border-left-color:var(--blue);border-left-width:12px}.game-row.current{box-shadow:0 0 0 3px var(--blue);background:#dbeafe!important;border-color:var(--blue)}.game-row.current .school-name{color:#1d4ed8;font-weight:1000}
 .school-name{font-size:34px;font-weight:1000;letter-spacing:-.06em;line-height:1.05}.meta{font-size:12px;color:#475569;font-weight:850;margin-top:1px}.vs-cell{width:36px;height:36px;border-radius:999px;background:#e5e7eb;color:#111827;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:950}.opponent-name{font-size:24px;font-weight:850;letter-spacing:-.04em;line-height:1.15;color:#111827}.score-main{font-size:31px;font-weight:950;line-height:1;white-space:nowrap}.score-sub{display:flex;align-items:center;gap:8px;margin-top:7px;white-space:nowrap}.inning-text{font-size:13px;color:#111827;font-weight:950}
 .status{display:inline-block;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.status.neutral{background:#e5e7eb;color:#374151}.status.warn{background:#ffedd5;color:#9a3412}.status.danger{background:#ffe4e6;color:#be123c}.status.ok{background:#dcfce7;color:#166534}
 .remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.topic{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
-.btn{display:inline-block;width:100%;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 10px;font-weight:950;font-size:13px;text-decoration:none}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
+.link-cell{display:flex;gap:6px;align-items:center}.btn,.article-btn{display:inline-block;width:auto;flex:1;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 8px;font-weight:950;font-size:12px;text-decoration:none;cursor:pointer}.article-btn{background:#eff6ff}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
 .right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
 .detail-panel{border:1px solid var(--line);border-radius:14px;background:#f8fafc;padding:10px 12px;margin:8px 0 10px}.detail-title{font-size:16px;font-weight:950;margin-bottom:4px}.detail-sub{font-size:12px;color:var(--muted);font-weight:850;margin-bottom:8px}.scoreboard-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden}.scoreboard-table th,.scoreboard-table td{border-bottom:1px solid #e2e8f0;padding:5px 6px;text-align:center;font-weight:850}.scoreboard-table th:first-child,.scoreboard-table td:first-child{text-align:left;min-width:76px}.scoreboard-table th:last-child,.scoreboard-table td:last-child{font-weight:950;background:#f1f5f9}.scoreboard-empty{font-size:13px;color:#64748b;font-weight:850;background:#fff;border:1px dashed #cbd5e1;border-radius:10px;padding:10px}.editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
 .article-editor{width:100%;min-height:300px;max-height:520px;overflow:auto;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font-size:15px;line-height:1.75;background:#fff}.article-editor p{margin:0 0 1em}.article-editor:empty:before{content:'左の一覧から試合を選ぶと、ここに1試合1段落で記事が追加されます。';color:#94a3b8}
@@ -63,15 +63,15 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 .status{font-size:11px;padding:4px 7px}
 .inning-text{font-size:11px}
 .mini-badge{font-size:10px;padding:2px 6px}
-.btn{width:auto;min-width:62px;padding:6px 10px;font-size:12px}
+.link-cell{gap:5px}.btn,.article-btn{width:auto;min-width:58px;padding:6px 8px;font-size:11px}
 .detail-panel{padding:9px}.scoreboard-table{font-size:11px}.scoreboard-table th,.scoreboard-table td{padding:4px 5px}.article-editor{min-height:220px}
 }
 </style>
 </head>
-<body data-generated-at="2026-07-06T19:18:21.186443+09:00">
+<body data-generated-at="2026-07-06T21:58:45.506190+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver9 Scoreboard</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver9 Scoreboard Fix2</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
@@ -82,8 +82,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 19:18</div>
-    <div class="pill">次回 19:33</div>
+    <div class="pill">最終 21:58</div>
+    <div class="pill">次回 22:13</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
@@ -142,6 +142,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
+    <button class="article-btn" type="button">記事追加</button>
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamanashi/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
@@ -173,6 +174,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
+    <button class="article-btn" type="button">記事追加</button>
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/hiroshima/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
@@ -204,6 +206,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">夏優勝</span><span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
+    <button class="article-btn" type="button">記事追加</button>
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/fukuoka/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
@@ -235,6 +238,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     <span class="mini-badge feature">大差</span><span class="mini-badge feature">乱打戦</span>
   </div>
   <div class="link-cell">
+    <button class="article-btn" type="button">記事追加</button>
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyazaki/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
@@ -266,6 +270,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
+    <button class="article-btn" type="button">記事追加</button>
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagoshima/score.html" target="_blank" rel="noopener">リンク</a>
   </div>
 </article>
@@ -406,19 +411,37 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     if(p) p.remove();
   }
 
+  document.addEventListener("click", event => {
+    const row = event.target.closest(".game-row");
+    if(!row || event.target.closest("a") || event.target.closest(".article-btn")) return;
+    rows.forEach(r => r.classList.remove("current"));
+    row.classList.add("current");
+    renderScoreboard(row);
+  });
+
   rows.forEach(row => {
     row.addEventListener("click", event => {
-      if(event.target.closest("a")) return;
+      if(event.target.closest("a") || event.target.closest(".article-btn")) return;
+      rows.forEach(r => r.classList.remove("current"));
+      row.classList.add("current");
+      renderScoreboard(row);
+    });
+  });
+
+  document.querySelectorAll(".article-btn").forEach(btn => {
+    btn.addEventListener("click", event => {
+      event.stopPropagation();
+      const row = event.target.closest(".game-row");
+      if(!row) return;
 
       rows.forEach(r => r.classList.remove("current"));
       row.classList.add("current");
       renderScoreboard(row);
 
       const phase = row.getAttribute("data-phase") || "";
-
-      // 試合中は状況確認だけにする。
-      // 記事は発生させない。試合前と試合終了は記事候補として追加できる。
       if(phase === "active"){
+        btn.textContent = "試合中";
+        setTimeout(() => btn.textContent = row.classList.contains("added") ? "記事解除" : "記事追加", 1200);
         updateChips();
         updateCount();
         return;
@@ -426,11 +449,12 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 
       if(row.classList.contains("added")){
         row.classList.remove("added");
-        row.classList.remove("current");
         removeArticle(row);
+        btn.textContent = "記事追加";
       }else{
         row.classList.add("added");
         addArticle(row);
+        btn.textContent = "記事解除";
       }
 
       updateChips();
@@ -444,6 +468,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     clearBtn.addEventListener("click", () => {
       if(editor) editor.innerHTML = "";
       rows.forEach(row => row.classList.remove("added", "current"));
+      document.querySelectorAll(".article-btn").forEach(btn => btn.textContent = "記事追加");
       updateChips();
       updateCount();
     });
@@ -489,6 +514,12 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
     });
 
     const visibleRows = rows.filter(row => !row.classList.contains("hidden"));
+    const current = rows.find(row => row.classList.contains("current"));
+    if((!current || current.classList.contains("hidden")) && visibleRows.length){
+      rows.forEach(row => row.classList.remove("current"));
+      visibleRows[0].classList.add("current");
+      renderScoreboard(visibleRows[0]);
+    }
     const finished = visibleRows.filter(row => row.getAttribute("data-phase") === "finished").length;
     const alerts = visibleRows.filter(row => row.getAttribute("data-alert") === "1").length;
     const metricTotal = document.getElementById("metric-total");
@@ -521,6 +552,11 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   });
 
   applyFilters();
+  const firstVisibleRow = rows.find(row => !row.classList.contains("hidden"));
+  if(firstVisibleRow){
+    firstVisibleRow.classList.add("current");
+    renderScoreboard(firstVisibleRow);
+  }
   updateCount();
 })();
 </script>
