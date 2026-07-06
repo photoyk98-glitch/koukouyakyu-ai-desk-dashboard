@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver8 Focus Final</title>
+<title>高校野球AI Desk Ver7 Focus Cards</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -13,8 +13,7 @@ h1{margin:0;font-size:24px;letter-spacing:-.05em;line-height:1}.version{font-siz
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;height:56px}.metric{background:#fff;color:#0f172a;border:1px solid var(--line);border-radius:14px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}.metric.hot{background:#0f172a;color:#fff;border-color:#475569}.metric strong{font-size:12px;white-space:nowrap}.metric span{font-size:30px;font-weight:950;line-height:1}
 .pills{display:flex;gap:8px;justify-content:flex-end;flex-wrap:nowrap}.pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;white-space:nowrap}
 main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-template-columns:minmax(980px,1.65fr) minmax(390px,.55fr);gap:10px;align-items:start}.panel{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.08);padding:12px}
-.focus-panel{margin-bottom:10px}.focus-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}.focus-head h2{font-size:18px;margin:0}.focus-link{font-size:13px;font-weight:950;color:var(--blue);text-decoration:none}.focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.focus-card{border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}.focus-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:#334155;font-weight:900;line-height:1.2}.focus-time{background:#fee2e2;color:#be123c;border-radius:999px;padding:2px 7px}.focus-label{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe;border-radius:999px;padding:2px 7px;font-size:11px}.focus-teams{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:7px;font-size:16px;font-weight:950;white-space:nowrap}.focus-vs{width:26px;height:26px;border-radius:999px;background:#e5e7eb;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}.focus-teams .opp{font-size:15px;font-weight:850}.empty-focus{border:1px dashed var(--line);border-radius:12px;padding:10px;color:var(--muted);font-size:13px}
-.list-top{display:grid;grid-template-columns:1fr 430px;gap:12px;align-items:start;margin-bottom:8px}h2{font-size:24px;margin:0 0 2px;letter-spacing:-.04em}.note{margin:0;color:var(--muted);font-size:13px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.tab{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:950;cursor:pointer}.tab.active{background:#0f172a;color:#fff}
+.focus-section{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.08);padding:12px;margin-bottom:10px}.focus-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.focus-title{font-size:17px;font-weight:950}.focus-link{font-size:13px;color:var(--blue);font-weight:950;text-decoration:none}.focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.focus-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:8px 10px;min-height:62px}.focus-meta{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:900;color:#334155;white-space:nowrap}.time-badge{background:#fee2e2;color:#e11d48;border-radius:999px;padding:2px 7px;font-weight:950}.focus-label{border-radius:999px;padding:2px 7px;font-size:11px;font-weight:950}.focus-strong,.focus-academic{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe}.focus-tradition{background:#ecfdf5;color:#047857;border:1px solid #bbf7d0}.focus-good{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}.focus-neutral{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}.focus-match{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;gap:8px;margin-top:7px;font-size:16px;font-weight:950}.focus-match span{text-align:center;background:#e5e7eb;border-radius:999px;padding:3px 0;font-size:11px}.opponent-focus{text-align:right}.list-top{display:grid;grid-template-columns:1fr 430px;gap:12px;align-items:start;margin-bottom:8px}h2{font-size:24px;margin:0 0 2px;letter-spacing:-.04em}.note{margin:0;color:var(--muted);font-size:13px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.tab{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:950;cursor:pointer}.tab.active{background:#0f172a;color:#fff}
 .filter-title{font-size:14px;font-weight:950;margin-bottom:6px}.regions{display:flex;gap:8px 12px;flex-wrap:wrap}.region-check{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:900}.region-check input{width:14px;height:14px}
 .list-head,.game-row{display:grid;grid-template-columns:1.15fr 46px 1.05fr 150px 180px 82px;gap:10px;align-items:center}.list-head{background:#f8fafc;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:950;color:#334155}.game-row{background:#fff;border:1px solid var(--line);border-left:8px solid #cbd5e1;border-radius:14px;padding:10px 12px;margin-top:7px;min-height:82px;cursor:pointer}.game-row:hover{background:#f8fbff}.game-row.danger{border-left-color:var(--red);background:#fff7f8}.game-row.warn{border-left-color:var(--orange);background:#fffaf3}.game-row.ok{border-left-color:var(--green)}.game-row.added{border-left-color:var(--blue);border-left-width:12px}.game-row.current{box-shadow:0 0 0 3px var(--blue);background:#dbeafe!important;border-color:var(--blue)}.game-row.current .school-name{color:#1d4ed8;font-weight:1000}
 .school-name{font-size:34px;font-weight:1000;letter-spacing:-.06em;line-height:1.05}.meta{font-size:12px;color:#475569;font-weight:850;margin-top:1px}.vs-cell{width:36px;height:36px;border-radius:999px;background:#e5e7eb;color:#111827;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:950}.opponent-name{font-size:24px;font-weight:850;letter-spacing:-.04em;line-height:1.15;color:#111827}.score-main{font-size:31px;font-weight:950;line-height:1;white-space:nowrap}.score-sub{display:flex;align-items:center;gap:8px;margin-top:7px;white-space:nowrap}.inning-text{font-size:13px;color:#111827;font-weight:950}
@@ -30,7 +29,7 @@ header{padding:12px 14px;gap:8px}
 h1{font-size:22px}.subtitle{font-size:12px;white-space:normal}
 .metrics{grid-template-columns:repeat(2,1fr);gap:8px}.metric{height:48px;padding:7px 10px}.metric span{font-size:26px}
 .pills{gap:6px}.pill{font-size:11px;padding:7px 9px}
-main{padding:8px}.panel{border-radius:14px;padding:10px}
+main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:10px;border-radius:14px}.focus-grid{grid-template-columns:1fr;gap:7px}.focus-card{min-height:0;padding:8px 9px}.focus-meta{font-size:11px;gap:5px}.focus-match{font-size:15px;margin-top:6px}.focus-match span{font-size:10px;padding:3px 0}
 .layout{display:block}.right{margin-top:10px}
 .list-top{display:block}.tabs{gap:5px}.tab{font-size:12px;padding:6px 10px}
 .regions{gap:6px 10px}.region-check{font-size:12px}
@@ -65,46 +64,31 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
 .inning-text{font-size:11px}
 .mini-badge{font-size:10px;padding:2px 6px}
 .btn{width:auto;min-width:62px;padding:6px 10px;font-size:12px}
-.focus-panel{margin-bottom:8px}
-.focus-head h2{font-size:16px}
-.focus-link{font-size:12px}
-.focus-grid{grid-template-columns:1fr;gap:6px}
-.focus-card{padding:7px 9px}
-.focus-meta{font-size:11px}
-.focus-teams{justify-content:flex-start;font-size:15px;margin-top:5px}
-.focus-teams .opp{font-size:14px}
 .article-editor{min-height:220px}
 }
 </style>
 </head>
-<body data-generated-at="2026-07-06T13:30:19.494177+09:00">
+<body data-generated-at="2026-07-06T15:03:15.295510+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver8 Focus Final</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver7 Focus Cards</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
     <div class="metric hot"><strong>速報必要</strong><span id="metric-defeat">0</span></div>
     <div class="metric"><strong>負けそう</strong><span id="metric-behind">0</span></div>
-    <div class="metric"><strong>重要校</strong><span id="metric-total">5</span></div>
-    <div class="metric"><strong>終了</strong><span id="metric-finished">2</span></div>
+    <div class="metric"><strong>重要校</strong><span id="metric-total">3</span></div>
+    <div class="metric"><strong>終了</strong><span id="metric-finished">3</span></div>
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 13:30</div>
-    <div class="pill">次回 13:45</div>
+    <div class="pill">最終 15:03</div>
+    <div class="pill">次回 15:18</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
 
 <main>
-<section class="panel focus-panel">
-  <div class="focus-head">
-    <h2>今日の注目カード（開始前）</h2>
-    <a class="focus-link" href="#game-list">注目カード一覧へ ＞</a>
-  </div>
-  <div class="focus-grid"><div class="empty-focus">現在、表示対象の開始前カードはありません。</div></div>
-</section>
 
 <section class="layout">
   <div class="panel">
@@ -133,44 +117,14 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
 
     <div id="game-list">
 <article class="game-row ok"
-  data-row-id="山梨:１回戦:山梨学院___韮崎"
-  data-region="関東"
-  data-pref="山梨"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="山梨学院"
-  data-article="山梨学院は韮崎に13－0で勝利した。本日の重要校の結果として確認する。">
-  <div class="school-cell">
-    <div class="meta">山梨　１回戦</div>
-    <div class="school-name">山梨学院</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">韮崎</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">13－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
-  </div>
-  <div class="link-cell">
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/yamanashi/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
   data-row-id="広島:１回戦:呉三津田___瀬戸内"
   data-region="中国"
   data-pref="広島"
-  data-phase="active"
+  data-phase="finished"
   data-alert="0"
   data-academic="0"
   data-school="瀬戸内"
-  data-article="瀬戸内の試合状況を確認する。スコアは8－0。">
+  data-article="瀬戸内は呉三津田に10－0で勝利した。本日の重要校の結果として確認する。">
   <div class="school-cell">
     <div class="meta">広島　１回戦</div>
     <div class="school-name">瀬戸内</div>
@@ -180,8 +134,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
     <div class="opponent-name">呉三津田</div>
   </div>
   <div class="score-cell">
-    <div class="score-main">8－0</div>
-    <div class="score-sub"><span class="status ok">リード</span> <span class="inning-text">1回</span></div>
+    <div class="score-main">10－0</div>
+    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
   </div>
   <div class="remarks-cell">
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge feature">大差</span>
@@ -196,11 +150,11 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
   data-row-id="福岡:１回戦:有明高専___西日本短大付"
   data-region="九州・沖縄"
   data-pref="福岡"
-  data-phase="active"
+  data-phase="finished"
   data-alert="0"
   data-academic="0"
   data-school="西日本短大付"
-  data-article="西日本短大付の試合状況を確認する。スコアは12－0。">
+  data-article="西日本短大付は有明高専に12－0で勝利した。本日の重要校の結果として確認する。">
   <div class="school-cell">
     <div class="meta">福岡　１回戦</div>
     <div class="school-name">西日本短大付</div>
@@ -211,7 +165,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
   </div>
   <div class="score-cell">
     <div class="score-main">12－0</div>
-    <div class="score-sub"><span class="status ok">リード</span> <span class="inning-text">1回</span></div>
+    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
   </div>
   <div class="remarks-cell">
     <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">夏優勝</span><span class="mini-badge feature">大差</span>
@@ -223,44 +177,14 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
 
 
 <article class="game-row ok"
-  data-row-id="宮崎:１回戦:延岡学園___飯野"
-  data-region="九州・沖縄"
-  data-pref="宮崎"
-  data-phase="finished"
-  data-alert="0"
-  data-academic="0"
-  data-school="延岡学園"
-  data-article="延岡学園は飯野に27－0で勝利した。本日の重要校の結果として確認する。">
-  <div class="school-cell">
-    <div class="meta">宮崎　１回戦</div>
-    <div class="school-name">延岡学園</div>
-  </div>
-  <div class="vs-cell">VS</div>
-  <div class="opponent-cell">
-    <div class="opponent-name">飯野</div>
-  </div>
-  <div class="score-cell">
-    <div class="score-main">27－0</div>
-    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
-  </div>
-  <div class="remarks-cell">
-    <span class="mini-badge feature">大差</span><span class="mini-badge feature">乱打戦</span>
-  </div>
-  <div class="link-cell">
-    <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/miyazaki/score.html" target="_blank" rel="noopener">リンク</a>
-  </div>
-</article>
-
-
-<article class="game-row ok"
   data-row-id="鹿児島:１回戦:出水商___鹿児島実"
   data-region="九州・沖縄"
   data-pref="鹿児島"
-  data-phase="active"
+  data-phase="finished"
   data-alert="0"
   data-academic="0"
   data-school="鹿児島実"
-  data-article="鹿児島実の試合状況を確認する。スコアは2－0。">
+  data-article="鹿児島実は出水商に7－0で勝利した。本日の重要校の結果として確認する。">
   <div class="school-cell">
     <div class="meta">鹿児島　１回戦</div>
     <div class="school-name">鹿児島実</div>
@@ -270,11 +194,11 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}
     <div class="opponent-name">出水商</div>
   </div>
   <div class="score-cell">
-    <div class="score-main">2－0</div>
-    <div class="score-sub"><span class="status ok">リード</span> <span class="inning-text">1回</span></div>
+    <div class="score-main">7－0</div>
+    <div class="score-sub"><span class="status ok">勝利・終了</span> <span class="inning-text">試合終了</span></div>
   </div>
   <div class="remarks-cell">
-    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">接戦</span><span class="mini-badge feature">ロースコア</span>
+    <span class="mini-badge watch">重点監視</span><span class="mini-badge power">強豪</span><span class="mini-badge tradition">伝統校</span><span class="mini-badge champion">春優勝</span><span class="mini-badge feature">大差</span>
   </div>
   <div class="link-cell">
     <a class="btn" href="https://www.nikkansports.com/baseball/highschool/sensyuken/2026/chihou/kagoshima/score.html" target="_blank" rel="noopener">リンク</a>
