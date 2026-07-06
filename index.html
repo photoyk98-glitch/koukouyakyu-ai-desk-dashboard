@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="900">
-<title>高校野球AI Desk Ver9 Important Master</title>
+<title>高校野球AI Desk Ver9 Scoreboard</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(120deg,#eaf2fb,#f8fbff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP',sans-serif}
@@ -21,7 +21,7 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 .remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.topic{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
 .btn{display:inline-block;width:100%;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 10px;font-weight:950;font-size:13px;text-decoration:none}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
 .right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
-.editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
+.detail-panel{border:1px solid var(--line);border-radius:14px;background:#f8fafc;padding:10px 12px;margin:8px 0 10px}.detail-title{font-size:16px;font-weight:950;margin-bottom:4px}.detail-sub{font-size:12px;color:var(--muted);font-weight:850;margin-bottom:8px}.scoreboard-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden}.scoreboard-table th,.scoreboard-table td{border-bottom:1px solid #e2e8f0;padding:5px 6px;text-align:center;font-weight:850}.scoreboard-table th:first-child,.scoreboard-table td:first-child{text-align:left;min-width:76px}.scoreboard-table th:last-child,.scoreboard-table td:last-child{font-weight:950;background:#f1f5f9}.scoreboard-empty{font-size:13px;color:#64748b;font-weight:850;background:#fff;border:1px dashed #cbd5e1;border-radius:10px;padding:10px}.editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
 .article-editor{width:100%;min-height:300px;max-height:520px;overflow:auto;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font-size:15px;line-height:1.75;background:#fff}.article-editor p{margin:0 0 1em}.article-editor:empty:before{content:'左の一覧から試合を選ぶと、ここに1試合1段落で記事が追加されます。';color:#94a3b8}
 .editor-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.primary,.light{border:0;border-radius:10px;padding:9px 12px;font-weight:950;cursor:pointer}.primary{background:var(--blue);color:#fff}.light{background:#eef2f7;color:#334155}.footnote{font-size:11px;color:var(--muted);margin-top:8px}
 .hidden{display:none!important}@media(max-width:1280px){header{height:auto;grid-template-columns:1fr}.metrics{height:auto}.pills{justify-content:flex-start}.layout,.list-top{grid-template-columns:1fr}}@media(max-width:760px){
@@ -64,14 +64,14 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 .inning-text{font-size:11px}
 .mini-badge{font-size:10px;padding:2px 6px}
 .btn{width:auto;min-width:62px;padding:6px 10px;font-size:12px}
-.article-editor{min-height:220px}
+.detail-panel{padding:9px}.scoreboard-table{font-size:11px}.scoreboard-table th,.scoreboard-table td{padding:4px 5px}.article-editor{min-height:220px}
 }
 </style>
 </head>
-<body data-generated-at="2026-07-06T18:37:53.108060+09:00">
+<body data-generated-at="2026-07-06T19:18:21.186443+09:00">
 <header>
   <div>
-    <h1>高校野球AI Desk <span class="version">Ver9 Important Master</span></h1>
+    <h1>高校野球AI Desk <span class="version">Ver9 Scoreboard</span></h1>
     <div class="subtitle">本日の重要校一覧から記事を組み立てる画面</div>
   </div>
   <div class="metrics">
@@ -82,8 +82,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   </div>
   <div class="pills">
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 18:37</div>
-    <div class="pill">次回 18:52</div>
+    <div class="pill">最終 19:18</div>
+    <div class="pill">次回 19:33</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
@@ -124,6 +124,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   data-alert="0"
   data-academic="0"
   data-school="山梨学院"
+  data-scoreboard="{&quot;team_a&quot;: &quot;韮崎&quot;, &quot;team_b&quot;: &quot;山梨学院&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;13&quot;, &quot;innings_a&quot;: [], &quot;innings_b&quot;: [], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
   data-article="山梨学院は韮崎に13－0で勝利した。">
   <div class="school-cell">
     <div class="meta">山梨　１回戦</div>
@@ -154,6 +155,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   data-alert="0"
   data-academic="0"
   data-school="瀬戸内"
+  data-scoreboard="{&quot;team_a&quot;: &quot;呉三津田&quot;, &quot;team_b&quot;: &quot;瀬戸内&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;10&quot;, &quot;innings_a&quot;: [], &quot;innings_b&quot;: [], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
   data-article="瀬戸内は呉三津田に10－0で勝利した。">
   <div class="school-cell">
     <div class="meta">広島　１回戦</div>
@@ -184,6 +186,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   data-alert="0"
   data-academic="0"
   data-school="西日本短大付"
+  data-scoreboard="{&quot;team_a&quot;: &quot;有明高専&quot;, &quot;team_b&quot;: &quot;西日本短大付&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;12&quot;, &quot;innings_a&quot;: [], &quot;innings_b&quot;: [], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
   data-article="西日本短大付は有明高専に12－0で勝利した。">
   <div class="school-cell">
     <div class="meta">福岡　１回戦</div>
@@ -214,6 +217,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   data-alert="0"
   data-academic="0"
   data-school="延岡学園"
+  data-scoreboard="{&quot;team_a&quot;: &quot;延岡学園&quot;, &quot;team_b&quot;: &quot;飯野&quot;, &quot;score_a&quot;: &quot;27&quot;, &quot;score_b&quot;: &quot;0&quot;, &quot;innings_a&quot;: [], &quot;innings_b&quot;: [], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
   data-article="延岡学園は飯野に27－0で勝利した。">
   <div class="school-cell">
     <div class="meta">宮崎　１回戦</div>
@@ -244,6 +248,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   data-alert="0"
   data-academic="0"
   data-school="鹿児島実"
+  data-scoreboard="{&quot;team_a&quot;: &quot;出水商&quot;, &quot;team_b&quot;: &quot;鹿児島実&quot;, &quot;score_a&quot;: &quot;0&quot;, &quot;score_b&quot;: &quot;7&quot;, &quot;innings_a&quot;: [], &quot;innings_b&quot;: [], &quot;inning&quot;: &quot;試合終了&quot;, &quot;status&quot;: &quot;試合終了&quot;}"
   data-article="鹿児島実は出水商に7－0で勝利した。">
   <div class="school-cell">
     <div class="meta">鹿児島　１回戦</div>
@@ -287,6 +292,11 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
         </div>
         <div class="chars" id="chars">文字数：0</div>
       </div>
+      <div class="detail-panel" id="match-detail">
+        <div class="detail-title">試合詳細</div>
+        <div class="detail-sub">左の一覧から試合を選ぶと、ここにスコアボードを表示します。</div>
+        <div class="scoreboard-empty">スコアボード未選択</div>
+      </div>
       <div class="selected-games" id="selected-games"></div>
       <div class="article-editor" id="article-editor" contenteditable="true" aria-label="AI記事エディター"></div>
       <div class="editor-actions">
@@ -307,9 +317,60 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   const chars = document.getElementById("chars");
   const clearBtn = document.getElementById("clear-article");
   const copyBtn = document.getElementById("copy-article");
+  const detailPanel = document.getElementById("match-detail");
   const regionBoxes = Array.from(document.querySelectorAll("[data-region-filter]"));
   const tabs = Array.from(document.querySelectorAll("[data-phase-filter]"));
   let phaseFilter = "all";
+
+  function escapeHtml(text){
+    return String(text || '').replace(/[&<>"']/g, s => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+    }[s]));
+  }
+
+  function renderScoreboard(row){
+    if(!detailPanel) return;
+    let data = {};
+    try{
+      data = JSON.parse(row.getAttribute("data-scoreboard") || "{}");
+    }catch(e){
+      data = {};
+    }
+
+    const teamA = data.team_a || "";
+    const teamB = data.team_b || "";
+    const scoreA = data.score_a || "0";
+    const scoreB = data.score_b || "0";
+    const inningsA = Array.isArray(data.innings_a) ? data.innings_a : [];
+    const inningsB = Array.isArray(data.innings_b) ? data.innings_b : [];
+    const maxLen = Math.max(inningsA.length, inningsB.length);
+    const status = data.status || "";
+    const inning = data.inning || "";
+
+    let html = '<div class="detail-title">' + escapeHtml(teamA) + '　' + escapeHtml(scoreA) + '－' + escapeHtml(scoreB) + '　' + escapeHtml(teamB) + '</div>';
+    html += '<div class="detail-sub">' + escapeHtml([status, inning].filter(Boolean).join(' ／ ')) + '</div>';
+
+    if(maxLen === 0){
+      html += '<div class="scoreboard-empty">スコアボード未取得。速報ページで確認してください。</div>';
+      detailPanel.innerHTML = html;
+      return;
+    }
+
+    html += '<table class="scoreboard-table"><thead><tr><th>チーム</th>';
+    for(let i=1; i<=maxLen; i++) html += '<th>' + i + '</th>';
+    html += '<th>計</th></tr></thead><tbody>';
+
+    html += '<tr><td>' + escapeHtml(teamA) + '</td>';
+    for(let i=0; i<maxLen; i++) html += '<td>' + escapeHtml(inningsA[i] || '') + '</td>';
+    html += '<td>' + escapeHtml(scoreA) + '</td></tr>';
+
+    html += '<tr><td>' + escapeHtml(teamB) + '</td>';
+    for(let i=0; i<maxLen; i++) html += '<td>' + escapeHtml(inningsB[i] || '') + '</td>';
+    html += '<td>' + escapeHtml(scoreB) + '</td></tr>';
+
+    html += '</tbody></table>';
+    detailPanel.innerHTML = html;
+  }
 
   function updateCount(){
     const text = editor ? editor.innerText.trim() : "";
@@ -351,6 +412,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 
       rows.forEach(r => r.classList.remove("current"));
       row.classList.add("current");
+      renderScoreboard(row);
 
       const phase = row.getAttribute("data-phase") || "";
 
