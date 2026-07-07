@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="861">
+<meta http-equiv="refresh" content="210">
 <title>高校野球AI Desk Ver9 Score Article</title>
 <style>
 :root{--ink:#0f172a;--muted:#64748b;--line:#dbe4ef;--bg:#eaf2fb;--blue:#2563eb;--red:#e11d48;--orange:#f97316;--green:#16a34a}
@@ -21,7 +21,7 @@ main{padding:10px 12px;max-width:1900px;margin:auto}.layout{display:grid;grid-te
 .status{display:inline-block;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:950;background:#e5e7eb;color:#374151}.status.neutral{background:#e5e7eb;color:#374151}.status.warn{background:#ffedd5;color:#9a3412}.status.danger{background:#ffe4e6;color:#be123c}.status.ok{background:#dcfce7;color:#166534}
 .remarks-cell{display:flex;gap:5px;flex-wrap:wrap}.mini-badge{font-size:11px;font-weight:950;border-radius:999px;padding:3px 7px;border:1px solid var(--line);background:#f8fafc;white-space:nowrap}.mini-badge.watch,.mini-badge.feature{display:none}.mini-badge.public{background:#ecfdf5;color:#047857;border-color:#bbf7d0}.mini-badge.topic{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.power,.mini-badge.danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}.mini-badge.academic{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.mini-badge.tradition{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.mini-badge.champion,.mini-badge.recent,.mini-badge.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.mini-badge.feature{background:#eef2ff;color:#3730a3;border-color:#c7d2fe}
 .link-cell{display:flex;gap:6px;align-items:center}.btn,.article-btn{display:inline-block;width:auto;flex:1;text-align:center;border:1px solid #bfdbfe;border-radius:999px;background:#fff;color:var(--blue);padding:8px 8px;font-weight:950;font-size:12px;text-decoration:none;cursor:pointer}.article-btn{background:#2563eb;border-color:#2563eb;color:#fff}.article-btn.is-added{background:#e2e8f0;border-color:#cbd5e1;color:#334155}.btn:hover{background:#eff6ff}.btn.disabled{color:#94a3b8;border-color:#cbd5e1}.empty-card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-weight:850;margin-top:10px}
-.right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
+.right{display:grid;gap:10px}.right .panel{padding:12px}h3{font-size:20px;margin:0 0 4px}.alert-card{border:1px solid var(--line);border-left:7px solid #94a3b8;border-radius:14px;padding:10px 12px;background:#fff;margin-top:8px}.alert-card.danger{border-left-color:var(--red);background:#fff1f2}.alert-card.warn{border-left-color:var(--orange);background:#fffbeb}.alert-card.info{border-left-color:var(--blue);background:#eff6ff}.alert-title{font-size:15px;font-weight:950}.alert-label{font-size:12px;color:#475569;font-weight:950}.alert-text{font-size:12px;color:#475569}.alert-actions{margin-top:7px}
 .alert-head{display:flex;justify-content:space-between;align-items:flex-start}.alert-cat{width:52px;height:auto;flex-shrink:0;margin-left:8px}
 .detail-panel{border:1px solid var(--line);border-radius:14px;background:#f8fafc;padding:10px 12px;margin:8px 0 10px}.detail-title{font-size:16px;font-weight:950;margin-bottom:4px}.detail-sub{font-size:12px;color:var(--muted);font-weight:850;margin-bottom:8px}.scoreboard-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden}.scoreboard-table th,.scoreboard-table td{border-bottom:1px solid #e2e8f0;padding:5px 6px;text-align:center;font-weight:850}.scoreboard-table th:first-child,.scoreboard-table td:first-child{text-align:left;min-width:76px}.scoreboard-table th:last-child,.scoreboard-table td:last-child{font-weight:950;background:#f1f5f9}.scoreboard-empty{font-size:13px;color:#64748b;font-weight:850;background:#fff;border:1px dashed #cbd5e1;border-radius:10px;padding:10px}.editor-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.chars{font-size:12px;color:var(--blue);font-weight:950}.selected-games{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.selected-chip{font-size:12px;font-weight:950;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:4px 8px}
 .article-editor{width:100%;min-height:300px;max-height:520px;overflow:auto;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font-size:15px;line-height:1.75;background:#fff}.article-editor p{margin:0 0 1em}.article-editor:empty:before{content:'左の一覧から試合を選ぶと、ここに1試合1段落で記事が追加されます。';color:#94a3b8}
@@ -70,7 +70,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 }
 </style>
 </head>
-<body data-generated-at="2026-07-07T18:09:08.966678+09:00">
+<body data-generated-at="2026-07-07T18:34:59.091380+09:00">
 <header>
   <div>
     <div class="title-row">
@@ -78,7 +78,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
       <div class="title-text">
         <h1>高校野球AI Desk</h1>
         <div class="subtitle">重要校一覧から本日の試合をチェック</div>
-        <div class="build-tag">Ver9.4 build 2026-07-07 18:10</div>
+        <div class="build-tag">Ver9.5 build 2026-07-07 18:40</div>
       </div>
     </div>
   </div>
@@ -91,8 +91,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   <div class="pills">
     <button type="button" class="pill pill-link" onclick="window.__openSchoolDirectory()">📋 重要校一覧（ジャンル別）</button>
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 18:09</div>
-    <div class="pill">次回 18:22</div>
+    <div class="pill">最終 18:34</div>
+    <div class="pill">次回 18:37</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
