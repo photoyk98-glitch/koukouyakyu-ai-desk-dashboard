@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="944">
+<meta http-equiv="refresh" content="907">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -40,7 +40,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 .regions{gap:6px 10px}.region-check{font-size:12px}
 .list-head{display:none}
 .game-row{
-  grid-template-columns:1fr auto 1fr;
+  grid-template-columns:1fr 92px 1fr;
   grid-template-areas:
     "school score opponent"
     "status status link"
@@ -52,6 +52,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   border-radius:12px;
   border-left-width:7px;
 }
+.score-cell{min-width:0}
+.score-sub{flex-direction:column;align-items:center}
 .game-row.added{border-left-width:9px}
 .school-cell{grid-area:school;min-width:0}
 .vs-cell{display:none}
@@ -73,7 +75,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
 }
 </style>
 </head>
-<body data-generated-at="2026-07-08T11:45:45.507308+09:00">
+<body data-generated-at="2026-07-08T12:01:22.608618+09:00">
 <header>
   <div>
     <div class="title-row">
@@ -81,7 +83,7 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
       <div class="title-text">
         <h1>高校野球AI Desk</h1>
         <div class="subtitle">重要校一覧から本日の試合をチェック</div>
-        <div class="build-tag">Ver10.2 build 2026-07-08 09:30</div>
+        <div class="build-tag">Ver10.3 build 2026-07-08 09:50</div>
       </div>
     </div>
   </div>
@@ -94,8 +96,8 @@ main{padding:8px}.panel{border-radius:14px;padding:10px}.focus-section{padding:1
   <div class="pills">
     <button type="button" class="pill pill-link" onclick="window.__openSchoolDirectory()">📋 重要校一覧（ジャンル別）</button>
     <div class="pill">🟢 自動巡回中</div>
-    <div class="pill">最終 11:45</div>
-    <div class="pill">次回 12:00</div>
+    <div class="pill">最終 12:01</div>
+    <div class="pill">次回 12:15</div>
     <div class="pill">15分更新</div>
   </div>
 </header>
